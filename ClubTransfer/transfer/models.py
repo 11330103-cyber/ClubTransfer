@@ -34,15 +34,15 @@ class TransferRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="申請時間")
 
     def submission_number(self):
-        # 遞交編號可以用created_at的timestamp或id
+        # ai給的建議:遞交編號可以用created_at的timestamp或id
         return self.id
 
     def queue_position(self):
-        # 新社團排隊人數：計算status < 4的申請數
+        # ai給的建議:新社團排隊人數：計算status < 4的申請數
         return TransferRequest.objects.filter(new_club=self.new_club, status__lt=4).count()
 
     def __str__(self):
         return f"{self.student.username} 從 {self.old_club} 到 {self.new_club}"
 
-# 擴展User模型，添加old_club
+# 擴展User模型，添加old_club:D
 User.add_to_class('old_club', models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_set', verbose_name="目前社團"))
