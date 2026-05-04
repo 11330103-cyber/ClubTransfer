@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="Asia/Taipei">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轉社進度</title>
+</head>
+<body>
+    <h1>轉社進度</h1>
+    {% if requests %}
+        {% for req in requests %}
+            <section style="border:1px solid #f3c3c3; padding:12px; margin-bottom:12px;">
+                <p>申請編號：{{ req.id }}</p>
+                <p>原社團：{{ req.old_club.name }}</p>
+                <p>新社團：{{ req.new_club.name }}</p>
+                <p>目前狀態：{{ req.get_status_display }}</p>
+                <progress value="{{ req.status }}" max="4" style="width:100%; height:16px;"></progress>
+            </section>
+        {% endfor %}
+    {% else %}
+        <p>目前沒有任何轉社申請。</p>
+    {% endif %}
+    <p><a href="{% url 'apply_transfer' %}">返回申請頁面</a></p>
+</body>
+</html>
