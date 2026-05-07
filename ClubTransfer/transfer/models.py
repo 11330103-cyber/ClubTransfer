@@ -43,3 +43,7 @@ class TransferRequest(models.Model):
 
     def __str__(self):
         return f"{self.student.username} 從 {self.old_club} 到 {self.new_club}"
+
+class User(models.Model):
+    student =models.CharField('申請人姓名', max_length=5)
+    old_club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='members', verbose_name="目前社團")
