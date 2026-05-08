@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Club(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="社團名稱")
     max_participants = models.IntegerField(verbose_name="人數上限")
-    founder = models.ForeignKey(User, on_delete=models.CASCADE, related_name='founded_clubs', verbose_name="社長")
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='taught_clubs', verbose_name="指導老師")
+    founder = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='founded_clubs', verbose_name="社長")
+    teacher = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='taught_clubs', verbose_name="指導老師")
 
     def current_participants(self):
         return self.user_set.count()  # 假設User有old_club字段
@@ -45,5 +45,8 @@ class TransferRequest(models.Model):
         return f"{self.student.username} 從 {self.old_club} 到 {self.new_club}"
 
 class User(models.Model):
-    student =models.CharField('申請人姓名', max_length=5)
-    old_club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='members', verbose_name="目前社團")
+    username =models.CharField('用戶姓名', max_length=50)
+    club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_set', verbose_name="目前社團")
+    def __str__(self):
+        return self.username
+    
