@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Club(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="社團名稱")
     max_participants = models.IntegerField(verbose_name="人數上限")
-    founder = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='founded_clubs', verbose_name="社長")
-    teacher = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='taught_clubs', verbose_name="指導老師")
+    founder = models.ForeignKey(User, on_delete=models.SET_NULL, null = True,related_name='founded_clubs', verbose_name="社長")
+    teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, related_name='taught_clubs', verbose_name="指導老師")
 
     def current_participants(self):
         return self.user_set.count()  # 假設User有old_club字段
