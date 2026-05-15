@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="Asia/Taipei">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轉社申請</title>
-</head>
-<body>
-    <h1>轉社申請</h1>
+{% extends "base.html" %}
+
+{% block title %}轉社申請{% endblock %}
+
+{% block main %}
+        <h1>轉社申請</h1>
     {% if error %}
         <p style="color:red;">{{ error }}</p>
     {% endif %}
@@ -34,5 +31,4 @@
     </form>
     <p>💥已經申請了嗎？</p>
     <p><a href="{% url 'progress' %}">查看我的進度</a></p>
-</body>
-</html>
+{% endblock %}

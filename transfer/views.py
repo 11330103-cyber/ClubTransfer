@@ -37,4 +37,4 @@ def progress(request):
     requests = TransferRequest.objects.filter(student=request.user)
     return render(request, 'transfer/progress.html', {'requests': requests})
 
-# 這裡目前只列出學生自己的申請進度。後面再加上社長老師學務處的額外過濾權限
+# 這裡目前只列出學生自己的申請進度。後面再加上社長老師學務處的額外過濾權限TAT
