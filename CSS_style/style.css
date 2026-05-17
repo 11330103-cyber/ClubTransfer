@@ -1,21 +1,21 @@
 body {
-            font-family: "Microsoft JhengHei", sans-serif;
-            background-color: #dcd8f8;
-            color: #3f3434;
-            padding: 20px;
-        }
-        h1 {
-            color: #155290;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        a {
-            color: #2980b9;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    font-family: "Microsoft JhengHei", sans-serif;
+    background-color: #ffffff;
+    color: #de2828;
+    padding: 20px;
+}
+h1 {
+    color: #1d8eff;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+a {
+    color: #860808;
+    text-decoration: none;
+    }
+a:hover {
+    text-decoration: underline;
+}
