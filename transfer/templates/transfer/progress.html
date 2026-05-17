@@ -1,12 +1,8 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="Asia/Taipei">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轉社進度</title>
-</head>
-<body>
+{% block title %}轉社進度{% endblock %}
+
+{% block main %}
     <h1>轉社進度</h1>
     {% if requests %}
         {% for req in requests %}
@@ -22,5 +18,4 @@
         <p>目前沒有任何轉社申請。</p>
     {% endif %}
     <p><a href="{% url 'apply_transfer' %}">返回申請頁面</a></p>
-</body>
-</html>
+{% endblock %}
