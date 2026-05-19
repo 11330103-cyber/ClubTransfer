@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}轉社審核{% endblock %}
+
+{% block main %}
+    <h1>轉社審核</h1>
+    {% if requests %}
+        {% for req in requests %}
+            <section style="border:1px solid #f3c3c3; padding:12px; margin-bottom:12px;">
+                <p>申請編號：{{ req.id }}</p>
+                <p>申請人：{{ req.applicant }}</p>
+                <p>原社團：{{ req.old_club.name }}</p>
+                <p>新社團：{{ req.new_club.name }}</p>
+                <form method="post" style="display:inline-block;">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ req.id }}">
+                    <button type="submit" name="action" value="approve">批准</button>
+                    <button type="submit" name="action" value="reject">拒絕</button>
+                </form>
+            </section>
+        {% endfor %}
+    {% else %}
+        <p>目前沒有任何待審核的轉社申請。</p>
+    {% endif %}
+{% endblock %}

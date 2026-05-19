@@ -38,3 +38,21 @@ def progress(request):
     return render(request, 'transfer/progress.html', {'requests': requests})
 
 # 這裡目前只列出學生自己的申請進度。後面再加上社長老師學務處的額外過濾權限TAT
+
+def approve_request(request, request_id):
+    # 判斷role（社長、老師、學務處）來決定審核邏輯
+    # 目前先簡單實現一個審核流程，後續再根據角色細分權限
+    transfer_request = TransferRequest.objects.get(id=request_id)
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'approve':
+            if transfer_request.status < 4:
+                transfer_request.status += 1
+                transfer_request.save()
+        elif action == 'reject':
+            transfer_request.status = -1  #false:()
+            transfer_request.save()
+        return redirect('progress')
+
+    return render(request, 'transfer/approve.html', {'request': transfer_request})
