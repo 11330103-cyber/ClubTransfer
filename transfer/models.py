@@ -10,7 +10,7 @@ class Club(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, related_name='taught_clubs', verbose_name="指導老師")
 
     def current_participants(self):
-        return self.user_set.count()  # 假設User有old_club字段
+        return self.user_set.count()  # 假設User有old_club字段其實我也不太清楚這行要幹嘛
 
     def is_full(self):
         return self.current_participants() >= self.max_participants
