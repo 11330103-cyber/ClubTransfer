@@ -4,17 +4,23 @@
 
 {% block main %}
 
-<h2>
-    大直轉社，值得信賴</h2>
+<nav class="logo" style="text-align: center;">
+    <h2>大直轉社，值得信賴</h2>
     <p>既然敢轉社你應該也知道要拖很久吧:P</p>
+</nav>
+
     
     
-    <nav class = "applies">
+    <nav class = "applies" style="text-align: center;">
         <div class = "applies-item">
             <a href="{% url 'apply_transfer' %}">
                 我要轉社!</a>
         </div>
-
+        
+        <div class = "applies-item">
+            <a href="{% url 'approve_request' request_id=1 %}">
+                查看轉社申請</a>
+        </div>
     </nav>
-    <a href="{% url 'approve_request' request_id=1 %}">查看轉社申請</a>
+    
 {% endblock %}

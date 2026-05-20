@@ -3,6 +3,7 @@ body {
     background-color: #ffffff;
     color: #070323;
     padding: 20px;
+    text-align: center;
 }
 h1 {
     color: #042c54;
@@ -19,23 +20,72 @@ a {
 a:hover {
     text-decoration: underline;
 }
-.toolbar {
-  display: flex;              
-  justify-content: space-between;
-  align-items: center;        
-  
-  background-color: #0d6ba6ce;    
-  padding: 10px 20px;           
-  color: #ffffff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* 確保工具列不會被其他內容遮住 */
+/*.toolbar {
+    display: flex;              
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px double #0b5887;
+    border-right: 1px solid #ffffff;
+    border-bottom: 10px solid #0b5887;
+    border-left: 1px solid #ffffff;  
+    border-width: 10px;      
+    
+    background-color: #ffffffce;    
+    padding: 10px 20px;           
+    color: #190560;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-sizing: border-box;
+}
+.toolbar a {
+    color: #10043e;
+    text-decoration: none;
 }
 
 .applies{
-    display: flexbox;
+    display: flex;
     flex-direction: column;
     gap: 10px;
+    text-align: center;
+    justify-content: space-between;
+    padding: 10px 20px; 
+
+}*/
+
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background-color: #ffffff;
+  padding: 10px 10px;           
+  border-bottom: 10px solid #0b5887; 
+}
+
+.toolbar-logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #0b5887; 
+}
+
+.toolbar-menu {
+  display: flex;
+  gap: 10px;
+}
+.toolbar-item {
+  color: #555555;               
+  font-weight: 500;
+  font-size: 1rem;
+
+  padding-bottom: 1px;          
+  border-bottom: 3px solid transparent; /* 預設有一條透明底線，防止滑鼠移入時畫面跳動 */
+  transition: all 0.2s ease-in-out;
+}
+
+.toolbar-item:hover {
+  color: #0b5887;
+  border-bottom: 5px solid #0b5887;
 }
