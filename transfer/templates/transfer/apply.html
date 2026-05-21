@@ -10,24 +10,25 @@
     <form method="post">
         {% csrf_token %}
         <div>
-            <label for="old_club">原社團：</label>
-            <select id="old_club" name="old_club">
-                <option value="">選擇舊社團</option>
-                {% for club in clubs %}
-                    <option value="{{ club.id }}">{{ club.name }}</option>
-                {% endfor %}
-            </select>
+            <label>原社團：</label>
+            {% if current_club %}
+                <span style="font-weight: bold; color: #0056b3;">{{ current_club.name }}</span>
+            {% else %}
+                <span style="color: red;">無所屬社團（無法申請）</span>
+            {% endif %}
         </div>
         <div>
             <label for="new_club">想轉的新社團：</label>
-            <select id="new_club" name="new_club">
+            <select id="new_club" name="new_club" required> #必填，確保用戶選擇一個新社團
                 <option value="">選擇新社團</option>
                 {% for club in clubs %}
-                    <option value="{{ club.id }}">{{ club.name }}</option>
+                    {% if club != current_club %} #過濾掉原社團，避免申請轉到同一個社團
+                        <option value="{{ club.id }}">{{ club.name }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </div>
-        <button type="submit">送出申請</button>
+        <button type="submit" {% if not current_club %}disabled{% endif %}>送出申請</button>#如果沒有原社團，就禁用提交按鈕，避免無效申請
     </form>
     <p>💥已經申請了嗎？</p>
     <p><a href="{% url 'progress' %}">查看我的進度</a></p>

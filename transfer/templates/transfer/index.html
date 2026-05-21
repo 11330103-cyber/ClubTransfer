@@ -9,18 +9,10 @@
     <p>既然敢轉社你應該也知道要拖很久吧:P</p>
 </nav>
 
-    
-    
-    <nav class = "applies" style="text-align: center;">
-        <div class = "applies-item">
-            <a href="{% url 'apply_transfer' %}">
-                我要轉社!</a>
-        </div>
-        
-        <div class = "applies-item">
-            <a href="{% url 'approve_request' request_id=1 %}">
-                查看轉社申請</a>
-        </div>
-    </nav>
-    
+    <label>管理人員登入</label>
+    <label>一班學生登入</label>
+    {if user.is_authenticated %}
+        <p><a href="{% url 'apply_transfer' %}">我要申請轉社</a></p>
+        <p><a href="{% url 'progress' %}">查看我的轉社進度</a></p>
+    {% endif %}
 {% endblock %}
