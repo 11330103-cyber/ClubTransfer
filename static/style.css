@@ -8,6 +8,10 @@ body {
 h1 {
     color: #042c54;
 }
+
+h2{
+    margin-top: 20px;
+}
 label {
     display: block;
     margin-top: 10px;
@@ -80,7 +84,7 @@ a:hover {
   font-weight: 500;
   font-size: 1rem;
 
-  padding-bottom: 1px;          
+  padding-bottom: 5px;          
   border-bottom: 3px solid transparent; /* 預設有一條透明底線，防止滑鼠移入時畫面跳動 */
   transition: all 0.2s ease-in-out;
 }
@@ -88,4 +92,9 @@ a:hover {
 .toolbar-item:hover {
   color: #0b5887;
   border-bottom: 5px solid #0b5887;
+}
+
+.bot{
+    background-color: #ffffff;
+    border: 2px solid #0b5887;
 }

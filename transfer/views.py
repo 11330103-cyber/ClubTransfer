@@ -56,3 +56,7 @@ def approve_request(request, request_id):
         return redirect('progress')
 
     return render(request, 'transfer/approve.html', {'request': transfer_request})
+
+def approve_list(request):
+    requests = TransferRequest.objects.filter(status__lte=4) 
+    return render(request, 'transfer/approve.html', {'requests': requests})
