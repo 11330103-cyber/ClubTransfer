@@ -46,17 +46,10 @@ a:hover {
 .toolbar a {
     color: #10043e;
     text-decoration: none;
-}
-
-.applies{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-    justify-content: space-between;
-    padding: 10px 20px; 
-
 }*/
+
+
+
 
 
 .toolbar {
@@ -97,4 +90,42 @@ a:hover {
 .bot{
     background-color: #ffffff;
     border: 2px solid #0b5887;
+}
+
+.applies {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  justify-content: center;
+  align-items: stretch;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.menu-box{
+    display: block;
+    gap: 20px;
+    margin: 10px auto;
+    padding: 60px 10px;
+    width: 300px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.15s;
+    text-align: center;
+}
+
+.menu-box:hover {
+  transform: scale(1.03);
+}
+
+.yellow-box {
+  background: #ffe066;
+  color: #7a5a00;
+}
+
+.pink-box {
+  background: #ffd6e0;
+  color: #a03a5e;
 }
