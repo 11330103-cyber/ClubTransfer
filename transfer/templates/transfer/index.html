@@ -7,20 +7,19 @@
     <h2>大直轉社，值得信賴</h2>
     <p>既然敢轉社你應該也知道要拖很久吧 :P</p>
 </div>
-
-<nav class="applies" style="text-align: center;">
+{% if user.is_authenticated %}
+   <nav class="applies" style="text-align: center;">
+        <a href="{% url 'apply_transfer' %}" class="menu-box yellow-box">
+            <div class="box-content">
+                <span class="box-text">🙋 我要轉社!</span>
+            </div>
+        </a>
     
-    <a href="{% url 'apply_transfer' %}" class="menu-box yellow-box">
-        <div class="box-content">
-            <span class="box-text">🙋 我要轉社!</span>
-        </div>
-    </a>
-    
-    <a href="{% url 'approve_list' %}" class="menu-box pink-box">
-        <div class="box-content">
-            <span class="box-text">🔍 查看轉社申請</span>
-        </div>
-    </a>
-
-</nav>
+        <a href="{% url 'progress' %}" class="menu-box pink-box">
+            <div class="box-content">
+                <span class="box-text">🔍 查看轉社申請</span>
+            </div>
+        </a>
+    </nav>
+{% endif %}
 {% endblock %}
