@@ -8,4 +8,8 @@
 
     <label>管理人員登入</label>
     <label>一班學生登入</label>
+    {if user.is_authenticated %}
+        <p><a href="{% url 'apply_transfer' %}">我要申請轉社</a></p>
+        <p><a href="{% url 'progress' %}">查看我的轉社進度</a></p>
+    {% endif %}
 {% endblock %}

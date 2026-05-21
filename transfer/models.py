@@ -10,7 +10,7 @@ class Club(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, related_name='taught_clubs', verbose_name="指導老師")
 
     def current_participants(self):
-        return self.user_set.count()  # 假設User有old_club字段
+        return self.members.count()  # 假設User有old_club字段
 
     def is_full(self):
         return self.current_participants() >= self.max_participants
@@ -44,9 +44,10 @@ class TransferRequest(models.Model):
     def __str__(self):
         return f"{self.student.username} 從 {self.old_club} 到 {self.new_club}"
 
-class User(models.Model):
-    username =models.CharField('用戶姓名', max_length=50)
-    club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_set', verbose_name="目前社團")
+class UserProfile(models.Model):
+    # 透過 OneToOneField 將這個表跟 Django 內建的 User 綁定在一起
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', verbose_name="使用者帳號")
+    club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True, blank=True, related_name='members', verbose_name="目前社團")
     def __str__(self):
-        return self.username
+        return self.user.username
     
