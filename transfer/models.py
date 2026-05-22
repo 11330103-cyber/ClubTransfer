@@ -11,6 +11,19 @@ class Club(models.Model):
     founder = models.ForeignKey(User, on_delete=models.SET_NULL, null = True,related_name='founded_clubs', verbose_name="社長")
     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, related_name='taught_clubs', verbose_name="指導老師")
 
+    def save(self, *args, **kwargs): #每次儲存Club時都能自動更新社長的UserProfile
+        super().save(*args, **kwargs)
+        if self.founder:
+            try:
+                profile = self.founder.profile
+                # 如果他原本檔案記錄的社團不等於這間社團，就強制校正
+                if profile.club != self:
+                    profile.club = self
+                    profile.save()
+            except Exception:
+                # 用 except 預防萬一：如果該 User（例如大系統管理員）沒有 UserProfile，就跳過
+                pass
+    
     def current_participants(self):
         return self.members.count()  # 假設User有old_club字段
 

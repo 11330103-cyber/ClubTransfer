@@ -3,23 +3,32 @@
 {% block title %}大直高中 轉社系統{% endblock %}
 
 {% block main %}
-<div class="welcome-section" style="text-align: center;">
-    <h2>大直轉社，值得信賴</h2>
-    <p>既然敢轉社你應該也知道要拖很久吧 :P</p>
-</div>
-{% if user.is_authenticated %}
-   <nav class="applies" style="text-align: center;">
-        <a href="{% url 'apply_transfer' %}" class="menu-box yellow-box">
-            <div class="box-content">
-                <span class="box-text">🙋 我要轉社!</span>
-            </div>
-        </a>
+    <div class="welcome-section" style="text-align: center;">
+        <h2>大直轉社，值得信賴</h2>
+        <p>既然敢轉社你應該也知道要拖很久吧 :P</p>
+    </div>
+    {% if user.is_authenticated %}
+        <nav class="applies" style="text-align: center;">
+            {% if not request.user.taught_clubs.all %}
+                <a href="{% url 'apply_transfer' %}" class="menu-box yellow-box">
+                    <div class="box-content">
+                        <span class="box-text">🙋 我要轉社!</span>
+                    </div>
+                </a>
+            {% endif %}
+            {% if request.user.founded_clubs.all or request.user.taught_clubs.all or request.user.is_staff %}
+                <a href="{% url 'pending_approvals' %}" class="menu-box pink-box">
+                    <div class="box-content">
+                        <span class="box-text">🔍 查看轉社申請</span>
+                    </div>
+                </a>
+            {% endif %}
+            <a href="{% url 'progress' %}" class="menu-box blue-box">
+                <div class="box-content">
+                    <span class="box-text">📊 轉社進度</span>
+                </div>
+            </a>
+        </nav>
+    {% endif %}
     
-        <a href="{% url 'progress' %}" class="menu-box pink-box">
-            <div class="box-content">
-                <span class="box-text">🔍 查看轉社申請</span>
-            </div>
-        </a>
-    </nav>
-{% endif %}
 {% endblock %}
