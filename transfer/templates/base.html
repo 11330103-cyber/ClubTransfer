@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <nav class = "toolbar">
-        <div>
-            <div class="toolbar-logo"><h3><strong>大直高中轉社系統🥴</strong></h3></div>
-            <div class="toolbar-menu">
-                <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;"></a>
-            </div>
+    <nav class="toolbar">
+        <div class="toolbar-logo">
+            <h3><strong>大直高中轉社系統🥴</strong></h3>
+        </div>
+        <div class="toolbar-menu">
+            <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;"></a>
             {% if not user.is_authenticated %}
-                <a class="toolbar-item" class="toolbar-item" href="{% url 'login' %}">登入</a>
+                <a class="toolbar-item" href="{% url 'login' %}">登入</a>
             {% else %}
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}

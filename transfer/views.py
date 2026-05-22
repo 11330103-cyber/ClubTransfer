@@ -64,52 +64,49 @@ def progress(request):
 # 這裡目前只列出學生自己的申請進度。後面再加上社長老師學務處的額外過濾權限TAT
 
 @login_required
-def pending_approvals(request):
+def pending_approvals(request): #這裡是社長老師專用的待審核頁面，裡面只會列出「輪到我審核」的申請單
+    user = request.user
+    
+    # 權限過濾：找出「狀態剛好對應到我身分」的申請單
+    pending_requests = TransferRequest.objects.filter(
+        Q(status=0, old_club__founder=user) |  # 任務 A: 輪到我這個「原社長」審了
+        Q(status=1, old_club__teacher=user) |  # 任務 B: 輪到我這個「原老師」審了
+        Q(status=2, new_club__founder=user) |  # 任務 C: 輪到我這個「新社長」審了
+        Q(status=3, new_club__teacher=user)    # 任務 D: 輪到我這個「新老師」審了
+    ).distinct()
+
+    return render(request, 'transfer/approvals.html', {'requests': pending_requests}) 
+
+@login_required
+def approve_request(request, request_id):
+    # 抓出這張申請單
+    transfer_request = get_object_or_404(TransferRequest, id=request_id)
     user = request.user
 
     if request.method == 'POST':
-        request_id = request.POST.get('request_id')
-        action = request.POST.get('action')  # 抓取按鈕的 value ('approve' 或 'reject')
-        
-        # 抓出這張申請單
-        transfer_request = get_object_or_404(TransferRequest, id=request_id)
-        
-        # 權限檢查，確認登入者此時此到底有沒有資格動這張單子
-        is_old_founder = (transfer_request.status == 0 and transfer_request.old_club.founder == user)
-        is_old_teacher = (transfer_request.status == 1 and transfer_request.old_club.teacher == user)
-        is_new_founder = (transfer_request.status == 2 and transfer_request.new_club.founder == user)
-        is_new_teacher = (transfer_request.status == 3 and transfer_request.new_club.teacher == user)
-        
-        if not (is_old_founder or is_old_teacher or is_new_founder or is_new_teacher):
-            return HttpResponseForbidden("您目前沒有權限審核這筆表單，或者還沒輪到您。")
-        
-        if action == 'approve':
-            if is_old_founder:
-                transfer_request.status = 1
-            elif is_old_teacher:
-                transfer_request.status = 2
-            elif is_new_founder:
-                transfer_request.status = 3
-            elif is_new_teacher:
-                transfer_request.status = 4
-                # 最終通過，更新學生的Profile
-                student_profile = transfer_request.student.profile
-                student_profile.club = transfer_request.new_club
-                student_profile.save()
-            transfer_request.save()
+        # 權限控制與狀態推進邏輯
+        if transfer_request.status == 0 and transfer_request.old_club.founder == user:
+            transfer_request.status = 1  # 原社長核准 -> 推進給原老師
             
-        elif action == 'reject':
-            #拒絕，直接將這筆申請單從資料庫刪除
-            transfer_request.delete()
+        elif transfer_request.status == 1 and transfer_request.old_club.teacher == user:
+            transfer_request.status = 2  # 原老師核准 -> 推進給新社長
             
+        elif transfer_request.status == 2 and transfer_request.new_club.founder == user:
+            transfer_request.status = 3  # 新社長核准 -> 推進給新老師
+            
+        elif transfer_request.status == 3 and transfer_request.new_club.teacher == user:
+            transfer_request.status = 4  # 新老師核准 -> 流程完成！
+            #更新學生的 Profile，把他的 club 換成新社團
+            student_profile = transfer_request.student.profile
+            student_profile.club = transfer_request.new_club
+            student_profile.save()
+        else:
+            # 拒絕沒有權限審核的用戶，或者還沒輪到他審核
+            return HttpResponseForbidden("您目前沒有權限審核這筆表單，或者還沒輪到您審核。")
+
+        # 儲存變更並導向回待辦清單
+        transfer_request.save()
         return redirect('pending_approvals')
 
-    # ─── 【GET 處理階段】：單純進入網頁時，列出「輪到我審核」的申請單 ───
-    pending_requests = TransferRequest.objects.filter(
-        Q(status=0, old_club__founder=user) |  # 輪到我這個「原社長」
-        Q(status=1, old_club__teacher=user) |  # 輪到我這個「原老師」
-        Q(status=2, new_club__founder=user) |  # 輪到我這個「新社長」
-        Q(status=3, new_club__teacher=user)    # 輪到我這個「新老師」
-    ).distinct()
-
-    return render(request, 'transfer/approve.html', {'requests': pending_requests})
+    # 如果不是 POST 請求，就導回首頁或進度頁
+    return redirect('progress')
