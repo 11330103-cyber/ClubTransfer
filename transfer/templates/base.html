@@ -13,14 +13,14 @@
             <h3><strong>大直高中轉社系統🥴</strong></h3>
         </div>
         <div class="toolbar-menu">
-            <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;"></a>
+            <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:30px; height: 30px;"></a>
             {% if not user.is_authenticated %}
                 <a class="bot toolbar-item" href="{% url 'login' %}">登入</a>
             {% else %}
                 <form  class="toolbar-item" action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     
-                    <button class="toolbar-item" type="submit">{{ user }} 登出</button>
+                    <button class="bot toolbar-item" type="submit">{{ user }} 登出</button>
                 </form>
             {% endif %}
         </div>
