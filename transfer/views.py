@@ -84,7 +84,7 @@ def approve_request(request, request_id):
     user = request.user
 
     if request.method == 'POST':
-        # 🛡️ 權限控制與狀態推進邏輯
+        # 權限控制與狀態推進邏輯
         if transfer_request.status == 0 and transfer_request.old_club.founder == user:
             transfer_request.status = 1  # 原社長核准 -> 推進給原老師
             
