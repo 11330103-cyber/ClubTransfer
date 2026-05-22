@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block tittle %}社團資訊{% endblock %}
+
+{% block main %}
+
+<body>
+    <h1>社團資訊</h1>
+    <p>社團名稱：{{ club.name }}</p>
+    <p>社團介紹：{{ club.description }}</p>
+    <p>社長：{{ club.president.username }}</p>
+    <p>指導老師：{{ club.advisor.username }}</p>
+
+    <p>社團目前申請人數：{{ club.transfer_requests.count }}</p>
+    <p>社團目前成員人數：{{ members.count }}</p>
+    社團滿圓人數：{{ club.capacity }}人
+    {% if club.transfer_requests.count >= club.capacity %}
+        <p style="color: red;">⚠️ 高機率可能部會轉社成功!可以先去聯絡社長!</p>
+    {% endif %}
+
+    <p><a href="{% url 'index' %}">返回首頁</a></p>
+</body>
+{% endblock %}

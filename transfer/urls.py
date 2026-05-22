@@ -6,4 +6,5 @@ urlpatterns = [
     path('apply/', views.apply_transfer, name='apply_transfer'),
     path('progress/', views.progress, name='progress'),
     path('approve/', views.pending_approvals, name='pending_approvals'),
+    path('detail/', views.detail, name='club_detail'),
 ]

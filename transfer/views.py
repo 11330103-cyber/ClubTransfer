@@ -5,6 +5,11 @@ from django.db.models import Q
 from .models import TransferRequest, Club, UserProfile
 
 
+def detail(request):
+    clubs = Club.objects.all()
+    return render(request, 'transfer/detail.html', {'clubs': clubs})
+
+
 def index(request):
     return render(request, 'transfer/index.html')
 
@@ -113,3 +118,5 @@ def pending_approvals(request):
     ).distinct()
 
     return render(request, 'transfer/approve.html', {'requests': pending_requests})
+
+
