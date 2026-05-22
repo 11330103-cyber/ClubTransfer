@@ -7,7 +7,7 @@
     {% if error %}
         <p style="color:rgb(152, 37, 37);">{{ error }}</p>
     {% endif %}
-    <form method="post">
+    <form method="post" class="apply-card">
         {% csrf_token %}
         <div>
             <label>原社團：</label>
@@ -28,7 +28,9 @@
                 {% endfor %}
             </select>
         </div>
-        <button type="submit" {% if not current_club %}disabled{% endif %}>送出申請</button> <!--如果沒有原社團，就禁用提交按鈕，避免無效申請-->
+        <div>
+            <button type="submit" {% if not current_club %}disabled{% endif %}>送出申請</button> <!--如果沒有原社團，就禁用提交按鈕，避免無效申請-->
+        </div>
     </form>
     <p>💥已經申請了嗎？</p>
     <p><a href="{% url 'progress' %}">查看我的進度</a></p>
