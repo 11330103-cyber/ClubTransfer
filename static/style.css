@@ -97,6 +97,15 @@ a:hover {
   padding: 10px 0;
   text-align: center;
 }
+.apply-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  align-items: center;
+}
 
 .menu-box{
     display: block;
@@ -133,4 +142,12 @@ a:hover {
 .gray-box{
   background: #c0bfbf;
   color: #333333;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1rem;
 }
