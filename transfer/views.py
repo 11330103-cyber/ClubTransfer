@@ -75,7 +75,7 @@ def pending_approvals(request): #這裡是社長老師專用的待審核頁面�
         Q(status=3, new_club__teacher=user)    # 任務 D: 輪到我這個「新老師」審了
     ).distinct()
 
-    return render(request, 'transfer/approvals.html', {'requests': pending_requests}) 
+    return render(request, 'transfer/approve.html', {'requests': pending_requests}) 
 
 @login_required
 def approve_request(request, request_id):
