@@ -12,11 +12,7 @@ h1 {
 h2{
     margin-top: 20px;
 }
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-}
+
 a {
     color: #160328;
     text-decoration: none;
@@ -111,11 +107,11 @@ label {
 .applies {
   display: flex;
   flex-direction: row;
-  gap: 0px;
+  gap: 5px;
   justify-content: center;
   align-items: stretch;
   padding: 10px 0;
-  text-align: center;
+  text-align: left;
 }
 .apply-card {
   background: #f9f9f9;
@@ -124,7 +120,7 @@ label {
   padding: 15px;
   width: 300px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  align-items: center;
+  align-items: left;
 }
 
 .menu-box{
@@ -184,6 +180,7 @@ select {
   justify-content: center;
   margin-bottom: 24px;
   padding: 0 32px;
+  background-color: #ffffff;
 }
 
 .progress-list .apply-card {
@@ -192,6 +189,7 @@ select {
   max-width: 340px;
   min-width: 260px;
   box-sizing: border-box;
+  background-color: #f9f9f9;
 }
 
 /*.progress-bar {
@@ -207,6 +205,11 @@ select {
   transition: width 0.3s;
 }*/
 
+.label {
+    display: block;
+    margin-top: 8px;
+    font-size: 10px;
+}
 .stepper {
   /*進度條===============================================================================*/
   /*進度條===============================================================================*/
@@ -278,7 +281,7 @@ select {
   position: absolute;
   top: 18px;
   left: 50%;
-  width: 100%;
+  width: 80%;
   height: 4px;
   background: #ccc;
   z-index: 0;
