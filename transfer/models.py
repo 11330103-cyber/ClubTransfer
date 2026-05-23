@@ -10,6 +10,7 @@ class Club(models.Model):
     max_participants = models.IntegerField(verbose_name="人數上限")
     founder = models.ForeignKey(User, on_delete=models.SET_NULL, null = True,related_name='founded_clubs', verbose_name="社長")
     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, related_name='taught_clubs', verbose_name="指導老師")
+    description = models.TextField(max_length=200, unique=True, verbose_name="社團介紹", blank=True, null=True)
 
     def save(self, *args, **kwargs): #每次儲存Club時都能自動更新社長的UserProfile
         super().save(*args, **kwargs)
