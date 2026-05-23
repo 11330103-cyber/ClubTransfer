@@ -12,11 +12,7 @@ h1 {
 h2{
     margin-top: 20px;
 }
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-}
+
 a {
     color: #160328;
     text-decoration: none;
@@ -111,11 +107,20 @@ label {
 .applies {
   display: flex;
   flex-direction: row;
-  gap: 0px;
+  gap: 5px;
   justify-content: center;
   align-items: stretch;
   padding: 10px 0;
-  text-align: center;
+  text-align: left;
+}
+
+section.apply-card {
+  background-color: #ffffff;
+  border: 2px solid #150b60;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .apply-card {
   background: #f9f9f9;
@@ -124,7 +129,14 @@ label {
   padding: 15px;
   width: 300px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  align-items: center;
+  align-items: left;
+}
+
+.progress-list .apply-card {
+  margin-bottom: 0;
+  flex: 320px;
+  max-width: 340px;
+  min-width: 260px;
 }
 
 .menu-box{
@@ -184,15 +196,10 @@ select {
   justify-content: center;
   margin-bottom: 24px;
   padding: 0 32px;
+  background-color: #ffffff;
 }
 
-.progress-list .apply-card {
-  margin-bottom: 0;
-  flex: 0 1 320px;
-  max-width: 340px;
-  min-width: 260px;
-  box-sizing: border-box;
-}
+
 
 /*.progress-bar {
   width: 100%;
@@ -207,13 +214,18 @@ select {
   transition: width 0.3s;
 }*/
 
+.label {
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+}
 .stepper {
   /*進度條===============================================================================*/
   /*進度條===============================================================================*/
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 40px;
+  gap: 4px;
   margin: 24px 0 12px 0;
   position: relative;
 }
@@ -278,10 +290,9 @@ select {
   position: absolute;
   top: 18px;
   left: 50%;
-  width: 100%;
+  width: 50%;
   height: 4px;
   background: #ccc;
-  z-index: 0;
   transform: translateX(50%);
 }
 
