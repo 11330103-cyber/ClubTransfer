@@ -40,11 +40,12 @@ class TransferRequest(models.Model):
         (1, '原老師審核中'),
         (2, '新社長審核中'),
         (3, '新老師審核中'),
-        (4, '完成'),
-        (5, '已退回 (原社長拒絕)'),
-        (6, '已退回 (原老師拒絕)'),
-        (7, '已退回 (新社長拒絕)'),
-        (8, '已退回 (新老師拒絕)'),
+        (4, '學務處審核中'),
+        (5, '完成'),
+        (6, '已退回 (原社長拒絕)'),
+        (7, '已退回 (原老師拒絕)'),
+        (8, '已退回 (新社長拒絕)'),
+        (9, '已退回 (新老師拒絕)'),
     ]
 
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transfer_requests', verbose_name="申請人")

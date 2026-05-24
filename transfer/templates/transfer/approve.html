@@ -29,7 +29,9 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="request_id" value="{{ req.id }}">
                                 <button class="bot" type="submit" name="action" value="approve">批准</button>
-                                <button class="bot" type="submit" name="action" value="reject">拒絕</button>
+                                {% if not request.user.is_staff %}
+                                    <button class="bot" type="submit" name="action" value="reject">拒絕</button>
+                                {% endif %}
                             </form>
                         </td>
                     </tr>

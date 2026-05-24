@@ -9,7 +9,7 @@
     </div>
     {% if user.is_authenticated %}
         <nav class="applies" style="text-align: center;">
-            {% if not request.user.taught_clubs.all %}
+            {% if not request.user.taught_clubs.all and not request.user.is_staff %}
                 <a href="{% url 'apply_transfer' %}" class="menu-box yellow-box">
                     <div class="box-content">
                         <span class="box-text">🙋 我要轉社!</span>
