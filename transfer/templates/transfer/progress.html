@@ -23,15 +23,15 @@
                   {% endif %}
                 </p>
                 <div class="stepper">
-                  <div class="step {% if req.status == 1 %}active{% elif req.status == 5 %}rejected{% endif %}">
+                  <div class="step {% if req.status >= 1 and req.status <= 4 %}active{% elif req.status == 5 %}rejected{% endif %}">
                     <div class="circle">1.</div>
                     <div class="label">原社長</div>
                   </div>
-                  <div class="step {% if req.status == 2 %}active{% elif req.status == 6 %}rejected{% endif %}">
+                  <div class="step {% if req.status >= 2 and req.status <= 4 %}active{% elif req.status == 6 %}rejected{% endif %}">
                     <div class="circle">2.</div>
                     <div class="label">原指導老師</div>
                   </div>
-                  <div class="step {% if req.status == 3 %}active{% elif req.status == 7 %}rejected{% endif %}">
+                  <div class="step {% if req.status >= 3 and req.status <= 4 %}active{% elif req.status == 7 %}rejected{% endif %}">
                     <div class="circle">3.</div>
                     <div class="label">新社長</div>
                   </div>
