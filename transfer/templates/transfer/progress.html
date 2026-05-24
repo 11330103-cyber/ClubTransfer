@@ -1,50 +1,109 @@
 {% extends "base.html" %}
 
-{% block title %}轉社進度{% endblock %}
+{% block title %}轉社進度與審核{% endblock %}
 
 {% block main %}
-    <h1>轉社進度</h1>
-    {% if requests %}
-        <div class="progress-list">
-        {% for req in requests %}
-            <section class="apply-card">
-                <p>申請編號：{{ req.id }}</p>
-                <p>申請日期：{{ req.created_at|date:"Y-m-d" }}</p>
-                <p>申請人：{{ req.user }}</p>
-                <p>原社團：{{ req.old_club.name }}</p>
-                <p>新社團：{{ req.new_club.name }}</p>
-                <p>目前狀態：
-                  {% if req.status >= 5 %}
-                    <strong style="color: red;">❌ {{ req.get_status_display }}</strong>
-                  {% elif req.status == 4 %}
-                    <strong style="color: green;">✅ {{ req.get_status_display }}</strong>
-                  {% else %}
-                    <strong>⏳ {{ req.get_status_display }}</strong>
-                  {% endif %}
-                </p>
-                <div class="stepper">
-                  <div class="step {% if req.status == 1 %}active{% elif req.status == 5 %}rejected{% endif %}">
-                    <div class="circle">1.</div>
-                    <div class="label">原社長</div>
-                  </div>
-                  <div class="step {% if req.status == 2 %}active{% elif req.status == 6 %}rejected{% endif %}">
-                    <div class="circle">2.</div>
-                    <div class="label">原指導老師</div>
-                  </div>
-                  <div class="step {% if req.status == 3 %}active{% elif req.status == 7 %}rejected{% endif %}">
-                    <div class="circle">3.</div>
-                    <div class="label">新社長</div>
-                  </div>
-                  <div class="step {% if req.status == 4 %}active{% elif req.status == 8 %}rejected{% endif %}">
-                    <div class="circle">4.</div>
-                    <div class="label">新指導老師</div>
-                  </div>
-                </div>
-            </section>
-        {% endfor %}
-        </div>
-    {% else %}
-        <p>目前沒有任何轉社申請。</p>
-    {% endif %}
-    <p><a href="{% url 'apply_transfer' %}">返回申請頁面</a></p>
+
+<input type="checkbox" id="view-toggle" class="hidden-checkbox">
+    <div class="page-header">
+        <h1>轉社審核與進度</h1>
+        
+        
+        <label for="view-toggle" class="toggle-btn">
+            <span class="text-card">切換至表格模式 📋</span>
+            <span class="text-table">切換至卡片模式 🗂️</span>
+        </label>
+    </div>
+
+    <div class="content-wrapper">
+        {% if requests %}
+            
+            <div class="view-card progress-list">
+                {% for req in requests %}
+                    <section class="apply-card">
+                        <p>申請編號：{{ req.id }}</p>
+                        <p>申請日期：{{ req.created_at|date:"Y-m-d" }}</p>
+                        <p>申請人：{{ req.user }}</p>
+                        <p>原社團：{{ req.old_club.name }}</p>
+                        <p>新社團：{{ req.new_club.name }}</p>
+                        
+                        <p>目前狀態：
+                            {% if req.status >= 5 %}
+                                <strong class="status-rejected">❌ {{ req.get_status_display }}</strong>
+                            {% elif req.status == 4 %}
+                                <strong class="status-approved">✅ {{ req.get_status_display }}</strong>
+                            {% else %}
+                                <strong> {{ req.get_status_display }}</strong>
+                            {% endif %}
+                        </p>
+
+                        <div class="stepper">
+                           <div class="step {% if req.status == 1 %}active{% elif req.status == 5 %}rejected{% endif %}">
+                               <div class="circle">1</div>
+                               <div class="label">原社長</div>
+                           </div>
+                           <div class="step {% if req.status == 2 %}active{% elif req.status == 6 %}rejected{% endif %}">
+                               <div class="circle">2</div>
+                               <div class="label">原老師</div>
+                           </div>
+                           <div class="step {% if req.status == 3 %}active{% elif req.status == 7 %}rejected{% endif %}">
+                               <div class="circle">3</div>
+                               <div class="label">新社長</div>
+                           </div>
+                           <div class="step {% if req.status == 4 %}active{% elif req.status == 8 %}rejected{% endif %}">
+                               <div class="circle">4</div>
+                               <div class="label">新老師</div>
+                           </div>
+                        </div>
+                        
+                        <form method="post" class="card-action-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="request_id" value="{{ req.id }}">
+                            <button class="bot" type="submit" name="action" value="approve">批准</button>
+                            <button class="bot" type="submit" name="action" value="reject">拒絕</button>
+                        </form>
+                    </section>
+                {% endfor %}
+            </div>
+
+            <div class="view-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>申請編號</th>
+                            <th>申請人</th>
+                            <th>原社團</th>
+                            <th>新社團</th>
+                            <th>目前狀態</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in requests %}
+                            <tr>
+                                <td>{{ req.id }}</td>
+                                <td>{{ req.user }}</td>
+                                <td>{{ req.old_club.name }}</td>
+                                <td>{{ req.new_club.name }}</td>
+                                <td>{{ req.get_status_display }}</td>
+                                <td>
+                                    <form method="post" class="table-action-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="request_id" value="{{ req.id }}">
+                                        <button class="bot" type="submit" name="action" value="approve">批准</button>
+                                        <button class="bot" type="submit" name="action" value="reject">拒絕</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% else %}
+            <p>目前沒有任何轉社申請。</p>
+        {% endif %}
+    </div>
+    
+    <p class="return-link"><a href="{% url 'apply_transfer' %}">返回申請頁面</a></p>
 {% endblock %}

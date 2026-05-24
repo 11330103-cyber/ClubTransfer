@@ -378,3 +378,91 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #e7eaf9;
 }
+
+
+
+/* ===================== 頁面排版與文字顏色 ===================== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status-rejected {
+    color: rgb(255, 98, 0);
+}
+
+.status-approved {
+    color: green;
+}
+
+.card-action-form {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.table-action-form {
+    display: inline;
+}
+
+.return-link {
+    margin-top: 20px;
+}
+
+/* ===================== 純 CSS 切換視圖魔法 ===================== */
+
+.hidden-checkbox {
+    display: none;
+}
+
+/* 切換按鈕的外觀 */
+.toggle-btn {
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid #0b5887;
+    background-color: #fff;
+    color: #0b5887;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+    background-color: #0b5887;
+    color: #ffffff;
+}
+
+/*預設狀態*/
+.view-card {
+    display: flex;
+}
+
+.view-table {
+    display: none;
+}
+
+/*按鈕文字顯示 */
+.toggle-btn .text-card { 
+    display: inline; 
+}
+.toggle-btn .text-table { 
+    display: none; 
+}
+
+/* 當 Checkbox 被勾選時：切換顯示狀態 */
+#view-toggle:checked ~ .content-wrapper .view-card {
+    display: none;
+}
+
+#view-toggle:checked ~ .content-wrapper .view-table {
+    display: block;
+}
+
+#view-toggle:checked ~ .page-header .toggle-btn .text-card {
+    display: none;
+}
+
+#view-toggle:checked ~ .page-header .toggle-btn .text-table {
+    display: inline;
+}
