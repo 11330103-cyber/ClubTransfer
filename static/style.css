@@ -339,6 +339,19 @@ nav.info {
   background-color: #ffffff;
 }
 
+/* 進度條拒絕狀態 */
+.step.rejected .circle {
+    background-color: #ff4d4d;
+    color: white;
+    border-color: #ff4d4d;
+}
+.step.rejected .label {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+.step.rejected:not(:last-child)::after {
+  background: #e74c3c;
+}
 
 /* ===================== 表格樣式 ===================== */
 table {

@@ -13,21 +13,29 @@
                 <p>申請人：{{ req.user }}</p>
                 <p>原社團：{{ req.old_club.name }}</p>
                 <p>新社團：{{ req.new_club.name }}</p>
-                <p>目前狀態：{{ req.get_status_display }}</p>
+                <p>目前狀態：
+                  {% if req.status >= 5 %}
+                    <strong style="color: red;">❌ {{ req.get_status_display }}</strong>
+                  {% elif req.status == 4 %}
+                    <strong style="color: green;">✅ {{ req.get_status_display }}</strong>
+                  {% else %}
+                    <strong>⏳ {{ req.get_status_display }}</strong>
+                  {% endif %}
+                </p>
                 <div class="stepper">
-                  <div class="step {% if req.status >= 1 %}active{% endif %}">
+                  <div class="step {% if req.status == 1 %}active{% elif req.status == 5 %}rejected{% endif %}">
                     <div class="circle">1.</div>
                     <div class="label">原社長</div>
                   </div>
-                  <div class="step {% if req.status >= 2 %}active{% endif %}">
+                  <div class="step {% if req.status == 2 %}active{% elif req.status == 6 %}rejected{% endif %}">
                     <div class="circle">2.</div>
                     <div class="label">原指導老師</div>
                   </div>
-                  <div class="step {% if req.status >= 3 %}active{% endif %}">
+                  <div class="step {% if req.status == 3 %}active{% elif req.status == 7 %}rejected{% endif %}">
                     <div class="circle">3.</div>
                     <div class="label">新社長</div>
                   </div>
-                  <div class="step {% if req.status >= 4 %}active{% endif %}">
+                  <div class="step {% if req.status == 4 %}active{% elif req.status == 8 %}rejected{% endif %}">
                     <div class="circle">4.</div>
                     <div class="label">新指導老師</div>
                   </div>

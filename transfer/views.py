@@ -104,8 +104,15 @@ def pending_approvals(request):
             transfer_request.save()
             
         elif action == 'reject':
-            #拒絕，直接將這筆申請單從資料庫刪除
-            transfer_request.delete()
+            if is_old_founder:
+                transfer_request.status = 5
+            elif is_old_teacher:
+                transfer_request.status = 6
+            elif is_new_founder:
+                transfer_request.status = 7
+            elif is_new_teacher:
+                transfer_request.status = 8
+            transfer_request.save()
             
         return redirect('pending_approvals')
 
