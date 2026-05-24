@@ -2,7 +2,7 @@ body {
     font-family: "Microsoft JhengHei", sans-serif;
     background-color: #ffffff;
     color: #070323;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 h1 {
@@ -123,11 +123,11 @@ section.apply-card {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .apply-card {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
+  background: #ffffff;
+  border: 2px solid #150b60;
   border-radius: 8px;
   padding: 15px;
-  width: 300px;
+  width: 500px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   align-items: left;
 }
@@ -318,4 +318,50 @@ select {
 
 .step.active .circle {
   background: #0b5887;
+}
+
+
+nav.info {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  
+}
+
+.info-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 0 32px;
+  background-color: #ffffff;
+}
+
+
+/* ===================== 表格樣式 ===================== */
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  border: 1px solid #ddd; 
+  padding: 12px; 
+  text-align: left; 
+}
+
+th {
+  background-color: #f4f4f4; 
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+tr:hover {
+  background-color: #e7eaf9;
 }
