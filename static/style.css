@@ -397,20 +397,11 @@ tr:hover {
     color: green;
 }
 
-.card-action-form {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.table-action-form {
-    display: inline;
-}
-
 .return-link {
     margin-top: 20px;
 }
 
-/* ===================== 純 CSS 切換視圖魔法 ===================== */
+/* ===================== 純 CSS 切換視圖 ===================== */
 
 .hidden-checkbox {
     display: none;

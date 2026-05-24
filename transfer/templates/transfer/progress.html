@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}轉社進度與審核{% endblock %}
+{% block title %}轉社進度{% endblock %}
 
 {% block main %}
 
 <input type="checkbox" id="view-toggle" class="hidden-checkbox">
+
     <div class="page-header">
-        <h1>轉社審核與進度</h1>
-        
+        <h1>轉社進度</h1>
         
         <label for="view-toggle" class="toggle-btn">
             <span class="text-card">切換至表格模式 📋</span>
@@ -38,30 +38,23 @@
                         </p>
 
                         <div class="stepper">
-                           <div class="step {% if req.status == 1 %}active{% elif req.status == 5 %}rejected{% endif %}">
+                            <div class="step {% if req.status >= 1 and req.status <= 4 %}active{% elif req.status == 5 %}rejected{% endif %}">
                                <div class="circle">1</div>
                                <div class="label">原社長</div>
-                           </div>
-                           <div class="step {% if req.status == 2 %}active{% elif req.status == 6 %}rejected{% endif %}">
+                            </div>
+                            <div class="step {% if req.status >= 2 and req.status <= 4 %}active{% elif req.status == 6 %}rejected{% endif %}">
                                <div class="circle">2</div>
                                <div class="label">原老師</div>
-                           </div>
-                           <div class="step {% if req.status == 3 %}active{% elif req.status == 7 %}rejected{% endif %}">
+                            </div>
+                            <div class="step {% if req.status >= 3 and req.status <= 4 %}active{% elif req.status == 7 %}rejected{% endif %}">
                                <div class="circle">3</div>
                                <div class="label">新社長</div>
-                           </div>
-                           <div class="step {% if req.status == 4 %}active{% elif req.status == 8 %}rejected{% endif %}">
+                            </div>
+                            <div class="step {% if req.status == 4 %}active{% elif req.status == 8 %}rejected{% endif %}">
                                <div class="circle">4</div>
                                <div class="label">新老師</div>
-                           </div>
+                            </div>
                         </div>
-                        
-                        <form method="post" class="card-action-form">
-                            {% csrf_token %}
-                            <input type="hidden" name="request_id" value="{{ req.id }}">
-                            <button class="bot" type="submit" name="action" value="approve">批准</button>
-                            <button class="bot" type="submit" name="action" value="reject">拒絕</button>
-                        </form>
                     </section>
                 {% endfor %}
             </div>
@@ -75,7 +68,6 @@
                             <th>原社團</th>
                             <th>新社團</th>
                             <th>目前狀態</th>
-                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,14 +77,14 @@
                                 <td>{{ req.user }}</td>
                                 <td>{{ req.old_club.name }}</td>
                                 <td>{{ req.new_club.name }}</td>
-                                <td>{{ req.get_status_display }}</td>
                                 <td>
-                                    <form method="post" class="table-action-form">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="request_id" value="{{ req.id }}">
-                                        <button class="bot" type="submit" name="action" value="approve">批准</button>
-                                        <button class="bot" type="submit" name="action" value="reject">拒絕</button>
-                                    </form>
+                                    {% if req.status >= 5 %}
+                                        <strong class="status-rejected">❌ {{ req.get_status_display }}</strong>
+                                    {% elif req.status == 4 %}
+                                        <strong class="status-approved">✅ {{ req.get_status_display }}</strong>
+                                    {% else %}
+                                        <strong>{{ req.get_status_display }}</strong>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
