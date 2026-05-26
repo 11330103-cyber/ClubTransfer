@@ -137,3 +137,6 @@ def pending_approvals(request):
             Q(status=3, new_club__teacher=user)
         ).distinct()
     return render(request, 'transfer/approve.html', {'requests': requests})
+
+@login_required
+def setting(request):pass

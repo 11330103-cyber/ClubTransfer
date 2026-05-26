@@ -7,4 +7,5 @@ urlpatterns = [
     path('progress/', views.progress, name='progress'),
     path('approve/', views.pending_approvals, name='pending_approvals'),
     path('detail/', views.detail, name='club_detail'),
+    path('setting/', views.setting, name='setting'),
 ]

@@ -41,7 +41,7 @@
                     </div>
                     <div class="step {% if req.status >= 2 and req.status <= 5 %}active{% elif req.status >= 7 and req.status <= 9 %}rejected{% endif %}">
                       <div class="circle">2.</div>
-                      <div class="label">原指導老師</div>
+                      <div class="label">原社老師</div>
                     </div>
                     <div class="step {% if req.status >= 3 and req.status <= 5 %}active{% elif req.status >= 8 and req.status <= 9 %}rejected{% endif %}">
                       <div class="circle">3.</div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="step {% if req.status >= 4 and req.status <= 5 %}active{% elif req.status == 9 %}rejected{% endif %}">
                       <div class="circle">4.</div>
-                      <div class="label">新指導老師</div>
+                      <div class="label">新社老師</div>
                     </div>
                     <div class="step {% if req.status == 5 %}active{% endif %}">
                       <div class="circle">5.</div>

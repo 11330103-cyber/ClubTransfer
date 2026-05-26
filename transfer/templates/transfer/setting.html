@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}設定{% endblock %}
+
+{% block main %}
+
+<body>
+    <a>添加工作人員、學生</a>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="輸入使用者名稱" required>
+        <button type="submit">添加</button>
+    </form>
+
+
+    <p>匯入大量學生資料:</p>
+    <button class="bot">匯入csv.</button>
+</body>
