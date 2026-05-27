@@ -12,9 +12,9 @@
         <div>
             <label>原社團：</label>
             {% if current_club %}
-                <span style="font-weight: bold; color: #0056b3;">{{ current_club.name }}</span>
+                <span style="font-weight: bold; color: #0250a3;">{{ current_club.name }}</span>
             {% else %}
-                <span style="color: red;">無所屬社團（無法申請）</span>
+                <span style="font-weight: bold; color: rgb(209, 4, 4);">無所屬社團（無法申請）</span>
             {% endif %}
         </div>
         <div>
@@ -33,5 +33,5 @@
         </div>
     </form>
     <p>💥已經申請了嗎？</p>
-    <p><a href="{% url 'progress' %}">查看我的進度</a></p>
+    <button class="bot"><a href="{% url 'progress' %}">查看我的進度</a></button>
 {% endblock %}

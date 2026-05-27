@@ -1,31 +1,47 @@
 body {
-    font-family: "Microsoft JhengHei", sans-serif;
-    background-color: #ffffff;
-    color: #070323;
-    padding: 10px;
-    text-align: center;
+  font-family: "Microsoft JhengHei", serif;
+  background-color: #ffffff;
+  color: #070323;
+  padding: 10px;
+  text-align: center;
 }
 h1 {
-    color: #042c54;
+  color: #042c54;
 }
 
-h2{
-    margin-top: 20px;
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 50px;
+}
+.welcome-section {
+  margin-top: 50px;
+  margin-bottom: 5px;
+  padding: 5px;
+
+}
+
+.welcome-section p {
+  text-decoration: overline;
 }
 
 a {
-    color: #160328;
-    text-decoration: none;
+  color: #160328;
+  text-decoration: none;
     }
 a:hover {
-    text-decoration: underline;
+  text-decoration: none;
 }
 
 label {
-    display: #042c54;
-    margin-top: 10px;
-    font-weight: bold;
+  display: #042c54;
+  margin-top: 10px;
+  font-weight: bold;
 }
+
 /*.toolbar {
     display: flex;              
     justify-content: space-between;
@@ -55,7 +71,7 @@ label {
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   
   background-color: #ffffff;
   padding: 10px 10px;           
@@ -76,7 +92,7 @@ label {
   color: #555555;               
   font-weight: 500;
   font-size: 1rem;
-
+  
   padding-bottom: 5px;          
   border-bottom: 3px solid transparent; /* 預設有一條透明底線，防止滑鼠移入時畫面跳動 */
   transition: all 0.2s ease-in-out;
@@ -97,7 +113,7 @@ label {
 /* ===================== 卡片/進度條/功能區 ====================================== */
 /*救命我要把者理弄粗一點不然我根本找不到阿阿阿阿阿阿==================================*/
 }
-.bot:hover {
+.bot:not(:disabled):hover {
     transform: scale(1.05);
     background-color: #0b5887;
     color: #ffffff;
@@ -111,7 +127,7 @@ label {
   justify-content: center;
   align-items: stretch;
   padding: 10px 0;
-  text-align: left;
+
 }
 
 section.apply-card {
@@ -175,13 +191,13 @@ section.apply-card {
 }
 
 .gray-box{
-  background: #c0bfbf;
-  color: #333333;
+  background: #95bbf5;
+  color: #32366d;
 }
 
 select {
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #eae3fc;
     border-radius: 4px;
     background-color: #fff;
     font-size: 1rem;

@@ -99,6 +99,6 @@
     </div>
     
     {% if not user.is_staff and not request.user.taught_clubs.all %}
-      <p><a href="{% url 'apply_transfer' %}">返回申請頁面</a></p>
+      <button class="bot"><a href="{% url 'apply_transfer' %}">返回申請頁面</a></button>
     {% endif %}
 {% endblock %}
