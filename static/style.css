@@ -15,8 +15,10 @@ h3 {
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 45px;
+  margin-bottom: 2px;
 }
+
 .welcome-section {
   margin-top: 50px;
   margin-bottom: 5px;
@@ -26,6 +28,8 @@ h2 {
 
 .welcome-section p {
   text-decoration: overline;
+  font-family: cursive;
+  margin-top: 1px;
 }
 
 a {
@@ -101,6 +105,66 @@ label {
 .toolbar-item:hover {
   color: #0b5887;
   border-bottom: 5px solid #0b5887;
+}
+
+.login{
+    display: block; /* ===================== 登入頁面 ===================== */
+    width: 100%;
+    max-width: 400px;
+    margin: 80px auto; 
+    padding: 40px;
+    border: 2px solid #0b5887;
+    border-radius: 16px; 
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(11, 88, 135, 0.08);
+    box-sizing: border-box;
+    text-align: left; 
+}
+
+.login h2 {
+    color: #042c54;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 40px;
+}
+
+.login p {
+    margin-bottom: 20px;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 8px;
+    color: #042c54;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+li{
+    list-style: none;
+    color: #540404;
+    margin: 3px auto;
+    font-size: 15px;
+}
+
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    border-color: #0b5887;
+    box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
 }
 
 .bot{
