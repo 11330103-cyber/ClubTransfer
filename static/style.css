@@ -33,7 +33,7 @@ h2 {
 }
 
 a {
-  color: #160328;
+  color: #000000;
   text-decoration: none;
     }
 a:hover {
@@ -42,7 +42,7 @@ a:hover {
 
 label {
   display: #042c54;
-  margin-top: 10px;
+  margin-top: 9px;
   font-weight: bold;
 }
 
@@ -184,6 +184,11 @@ li{
     border-color: #0b5887;
 }
 
+button :hover {
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
 .applies {
   display: flex;
   flex-direction: row;
@@ -210,8 +215,7 @@ section.apply-card {
   width: 100%;
   max-width: 500px; 
   box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  
+  box-shadow: 0 4px 6px rgba(175, 186, 209, 0.539);
   margin: 30px auto;
 }
 
@@ -300,7 +304,7 @@ select {
 .label {
     display: block;
     margin-top: 8px;
-    font-size: 15px;
+    font-size: 14px;
 }
 .stepper {
   /*進度條===============================================================================*/
@@ -459,7 +463,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  background-color: #e7eaf9;
+  background-color: #d2dce2;
 }
 
 
@@ -484,7 +488,6 @@ tr:hover {
     margin-top: 20px;
 }
 
-/* ===================== 純 CSS 切換視圖 ===================== */
 
 .hidden-checkbox {
     display: none;
@@ -507,7 +510,7 @@ tr:hover {
     color: #ffffff;
 }
 
-/*預設狀態*/
+/*預設*/
 .view-card {
     display: flex;
 }
@@ -516,7 +519,7 @@ tr:hover {
     display: none;
 }
 
-/*按鈕文字顯示 */
+/*按鈕文字 */
 .toggle-btn .text-card { 
     display: inline; 
 }
@@ -524,7 +527,7 @@ tr:hover {
     display: none; 
 }
 
-/* 當 Checkbox 被勾選時：切換顯示狀態 */
+/* 把切換用checkbox解決 */
 #view-toggle:checked ~ .content-wrapper .view-card {
     display: none;
 }

@@ -27,9 +27,9 @@
                   <p>新社團：{{ req.new_club.name }}</p>
                   <p>目前狀態：
                     {% if req.status >= 6 %}
-                      <strong style="color: red;">❌ {{ req.get_status_display }}</strong>
+                      <strong style="color: red;">{{ req.get_status_display }}</strong>
                     {% elif req.status == 5 %}
-                      <strong style="color: green;">✅ {{ req.get_status_display }}</strong>
+                      <strong style="color: green;">{{ req.get_status_display }}</strong>
                     {% else %}
                       <strong>⏳ {{ req.get_status_display }}</strong>
                     {% endif %}
@@ -80,9 +80,9 @@
                                 <td>{{ req.new_club.name }}</td>
                                 <td>
                                     {% if req.status >= 6 %}
-                                        <strong class="status-rejected">❌ {{ req.get_status_display }}</strong>
+                                        <strong class="status-rejected"> {{ req.get_status_display }}</strong>
                                     {% elif req.status == 5 %}
-                                        <strong class="status-approved">✅ {{ req.get_status_display }}</strong>
+                                        <strong class="status-approved"> {{ req.get_status_display }}</strong>
                                     {% else %}
                                         <strong>{{ req.get_status_display }}</strong>
                                     {% endif %}
