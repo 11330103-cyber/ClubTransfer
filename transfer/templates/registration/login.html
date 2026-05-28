@@ -3,11 +3,12 @@
 {% block title %}{% endblock %}
 
 {% block main %}
-
-    <h2><strong>LOGIN</strong></h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="bot" type="submit" value="登入">
-    </form>
+    <div class="login">
+        <h2 class=><strong>LOGIN</strong></h2>
+        <form action="" method="post" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="bot" type="submit" value="登入">
+        </form>
+    </div>
 {% endblock %}

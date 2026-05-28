@@ -20,8 +20,8 @@
             {% else %}
                 <form class="toolbar-item" action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    {{ user }}
-                    <button type="submit" class="toolbar-item" style="background:none;border:none;padding:0;">登出</button>
+                    
+                    <button type="submit" class="toolbar-item" style="background:none;border:none;padding:0;">{{ user }}登出</button>
                 </form>
             {% endif %}
         </div>

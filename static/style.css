@@ -1,31 +1,51 @@
 body {
-    font-family: "Microsoft JhengHei", sans-serif;
-    background-color: #ffffff;
-    color: #070323;
-    padding: 10px;
-    text-align: center;
+  font-family: "Microsoft JhengHei", serif;
+  background-color: #ffffff;
+  color: #070323;
+  padding: 10px;
+  text-align: center;
 }
 h1 {
-    color: #042c54;
+  color: #042c54;
 }
 
-h2{
-    margin-top: 20px;
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 45px;
+  margin-bottom: 2px;
+}
+
+.welcome-section {
+  margin-top: 50px;
+  margin-bottom: 5px;
+  padding: 5px;
+
+}
+
+.welcome-section p {
+  text-decoration: overline;
+  font-family: cursive;
+  margin-top: 1px;
 }
 
 a {
-    color: #160328;
-    text-decoration: none;
+  color: #000000;
+  text-decoration: none;
     }
 a:hover {
-    text-decoration: underline;
+  text-decoration: none;
 }
 
 label {
-    display: #042c54;
-    margin-top: 10px;
-    font-weight: bold;
+  display: #042c54;
+  margin-top: 9px;
+  font-weight: bold;
 }
+
 /*.toolbar {
     display: flex;              
     justify-content: space-between;
@@ -55,7 +75,7 @@ label {
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   
   background-color: #ffffff;
   padding: 10px 10px;           
@@ -76,7 +96,7 @@ label {
   color: #555555;               
   font-weight: 500;
   font-size: 1rem;
-
+  
   padding-bottom: 5px;          
   border-bottom: 3px solid transparent; /* 預設有一條透明底線，防止滑鼠移入時畫面跳動 */
   transition: all 0.2s ease-in-out;
@@ -85,6 +105,66 @@ label {
 .toolbar-item:hover {
   color: #0b5887;
   border-bottom: 5px solid #0b5887;
+}
+
+.login{
+    display: block; /* ===================== 登入頁面 ===================== */
+    width: 100%;
+    max-width: 400px;
+    margin: 80px auto; 
+    padding: 40px;
+    border: 2px solid #0b5887;
+    border-radius: 16px; 
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(11, 88, 135, 0.08);
+    box-sizing: border-box;
+    text-align: left; 
+}
+
+.login h2 {
+    color: #042c54;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 40px;
+}
+
+.login p {
+    margin-bottom: 20px;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 8px;
+    color: #042c54;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+li{
+    list-style: none;
+    color: #540404;
+    margin: 3px auto;
+    font-size: 15px;
+}
+
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    border-color: #0b5887;
+    box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
 }
 
 .bot{
@@ -97,11 +177,16 @@ label {
 /* ===================== 卡片/進度條/功能區 ====================================== */
 /*救命我要把者理弄粗一點不然我根本找不到阿阿阿阿阿阿==================================*/
 }
-.bot:hover {
+.bot:not(:disabled):hover {
     transform: scale(1.05);
     background-color: #0b5887;
     color: #ffffff;
     border-color: #0b5887;
+}
+
+button :hover {
+    transform: scale(1.05);
+    color: #ffffff;
 }
 
 .applies {
@@ -111,7 +196,7 @@ label {
   justify-content: center;
   align-items: stretch;
   padding: 10px 0;
-  text-align: left;
+
 }
 
 section.apply-card {
@@ -127,9 +212,11 @@ section.apply-card {
   border: 2px solid #150b60;
   border-radius: 8px;
   padding: 15px;
-  width: 500px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  align-items: left;
+  width: 100%;
+  max-width: 500px; 
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(175, 186, 209, 0.539);
+  margin: 30px auto;
 }
 
 .progress-list .apply-card {
@@ -175,13 +262,13 @@ section.apply-card {
 }
 
 .gray-box{
-  background: #c0bfbf;
-  color: #333333;
+  background: #95bbf5;
+  color: #32366d;
 }
 
 select {
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #eae3fc;
     border-radius: 4px;
     background-color: #fff;
     font-size: 1rem;
@@ -217,7 +304,7 @@ select {
 .label {
     display: block;
     margin-top: 8px;
-    font-size: 15px;
+    font-size: 14px;
 }
 .stepper {
   /*進度條===============================================================================*/
@@ -376,7 +463,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  background-color: #e7eaf9;
+  background-color: #d2dce2;
 }
 
 
@@ -401,7 +488,6 @@ tr:hover {
     margin-top: 20px;
 }
 
-/* ===================== 純 CSS 切換視圖 ===================== */
 
 .hidden-checkbox {
     display: none;
@@ -424,7 +510,7 @@ tr:hover {
     color: #ffffff;
 }
 
-/*預設狀態*/
+/*預設*/
 .view-card {
     display: flex;
 }
@@ -433,7 +519,7 @@ tr:hover {
     display: none;
 }
 
-/*按鈕文字顯示 */
+/*按鈕文字 */
 .toggle-btn .text-card { 
     display: inline; 
 }
@@ -441,7 +527,7 @@ tr:hover {
     display: none; 
 }
 
-/* 當 Checkbox 被勾選時：切換顯示狀態 */
+/* 把切換用checkbox解決 */
 #view-toggle:checked ~ .content-wrapper .view-card {
     display: none;
 }
