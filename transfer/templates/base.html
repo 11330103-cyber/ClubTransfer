@@ -13,8 +13,8 @@
             <h3><strong>大直高中轉社系統🥴</strong></h3>
         </div>
         <div class="toolbar-menu">
-            <button id="theme-toggle" class="bot toolbar-item">🌓 切換模式</button>
-            <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;"></a>
+            <button id="theme-toggle" class="bot toolbar-item">切換模式</button>
+            <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;">首頁</a>
             <a class="toolbar-item" href="{% url 'club_detail' %}">社團詳細資訊</a>
             {% if not user.is_authenticated %}
                 <a class="toolbar-item" href="{% url 'login' %}">登入</a>
@@ -33,17 +33,16 @@
     <script>
     const toggleBtn = document.getElementById('theme-toggle');
     
-    // 1. 檢查使用者上次有沒有設定過深色模式
+    
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
 
-    // 2. 當點擊切換按鈕時
+    
     toggleBtn.addEventListener('click', () => {
-        // 像開關一樣，有 .dark-mode 就拿掉，沒有就加上
         document.body.classList.toggle('dark-mode');
         
-        // 3. 把當前的狀態永久記在瀏覽器的小本本裡
+        //瀏覽器紀錄:P
         if (document.body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'dark');
         } else {

@@ -1,12 +1,12 @@
-/* ===================== 1. 顏色變數核心控管區 ===================== */
+/* =====================  顏色模式變數核心控管區 ===================== */
 :root {
     --bg-main: #ffffff;          /* 全局背景 */
     --text-main: #070323;        /* 主要文字 */
-    --a-main: #0b5887;           /* 超連結顏色（改用主題藍比純黑更好看） */
+    --a-main: #0b5887;           /* 超連結顏色 */
     --card-bg: #ffffff;          /* 卡片/選單背景 */
     --border-color: #0b5887;     /* 主題邊框線 */
     
-    /* 🎨 新增：表格與細節專用變數 */
+    /* 表格與細節專用變數 */
     --table-th: #f4f4f4;         /* 表格標頭 */
     --table-even: #f9f9f9;       /* 表格雙數列 */
     --table-hover: #e7eaf9;      /* 表格滑鼠懸停 */
@@ -16,22 +16,22 @@
 }
 
 body.dark-mode {
-    --bg-main: #121212;          /* 暗黑全局背景 */
-    --text-main: #f5f7fa;        /* 暗黑主要文字 */
-    --a-main: #3a9ad9;           /* 🌟 修正：暗黑超連結（亮藍色才看得到！） */
-    --card-bg: #1e1e1e;          /* 暗黑卡片背景 */
-    --border-color: #3a9ad9;     /* 暗黑主題邊框線 */
+    --bg-main: #121212;          /* 全局背景 */
+    --text-main: #f5f7fa;        /* 主要文字 */
+    --a-main: #3a9ad9;           /* 超連結*/
+    --card-bg: #1e1e1e;          /* 卡片背景 */
+    --border-color: #3a9ad9;     /* 主題邊框線 */
     
-    /* 🎨 暗黑模式專用表格與細節 */
+    /* 深色模式專用表格與細節 */
     --table-th: #2d2d2d;         
     --table-even: #1a1a1a;       
     --table-hover: #2c3e50;      
     --input-border: #444444;     
-    --error-color: #ff6b6b;      /* 亮紅色，暗黑模式才顯眼 */
+    --error-color: #ff6b6b;      
     --step-line: #444444;
 }
 
-/* ===================== 2. 全局基礎樣式 ===================== */
+/* ===================== :3 ================================= */
 body {
     font-family: "Microsoft JhengHei", serif;
     background-color: var(--bg-main);
@@ -74,24 +74,25 @@ a {
 }
 
 a:hover {
-    text-decoration: underline; /* 增加滑鼠移入時的底線提示 */
+  text-decoration: none;
+  margin-bottom: 5px;
 }
 
 label {
-    display: block; /* 🌟 修正：原本誤寫為 var(--a-main) */
-    color: var(--text-main); /* 補上顏色控制 */
+    display: block; 
+    color: var(--text-main);
     margin-top: 10px;
     font-weight: bold;
 }
 
 li {
     list-style: none;
-    color: var(--error-color); /* 🌟 修正：改成變數控制，深色模式才不會看不見 */
+    color: var(--error-color); 
     margin: 3px auto;
     font-size: 15px;
 }
 
-/* ===================== 3. 導覽列 (Toolbar) ===================== */
+/* ===================== 工具列 ============================= */
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -109,16 +110,21 @@ li {
 }
 
 .toolbar-menu {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  align-items: center; 
+  gap: 15px;           
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .toolbar-item {
     color: var(--text-main);               
     font-weight: 500;
     font-size: 1rem;
-    padding-bottom: 5px;          
-    border-bottom: 3px solid transparent; 
+   
+    padding: 5px 0;           
+    border-bottom: 3px solid transparent;
     transition: all 0.2s ease-in-out;
 }
 
@@ -127,7 +133,7 @@ li {
     border-bottom: 5px solid var(--border-color);
 }
 
-/* ===================== 4. 登入頁面 (Login) ===================== */
+/* ===================== 登入頁面 ========================== */
 .login {
     display: block; 
     width: 90%;
@@ -167,9 +173,9 @@ li {
 .login input[type="password"] {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid var(--input-border); /* 🌟 改用變數 */
-    background-color: var(--bg-main);      /* 🌟 補上背景色，防止深色模式穿透 */
-    color: var(--text-main);               /* 🌟 補上打字顏色 */
+    border: 2px solid var(--input-border); 
+    background-color: var(--bg-main);      
+    color: var(--text-main);               
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -183,7 +189,7 @@ li {
     box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
 }
 
-/* ===================== 5. 通用按鈕與卡片功能區 ===================== */
+
 .bot {
     background-color: var(--bg-main);
     border: 2px solid var(--border-color);
@@ -200,7 +206,7 @@ li {
 .bot:not(:disabled):hover {
     transform: scale(1.05);
     background-color: var(--border-color);
-    color: var(--bg-main); /* 頂替白天深色的白字 */
+    color: var(--bg-main); 
     border-color: var(--border-color);
 }
 
@@ -239,7 +245,7 @@ button:hover {
     min-width: 260px;
 }
 
-/* ===================== 6. 彩色選單方塊 (Menu Box) ===================== */
+/* ===================== Menu Box ========================= */
 .menu-box {
     display: block;
     margin: 10px auto;
@@ -257,7 +263,7 @@ button:hover {
     transform: scale(1.03);
 }
 
-/* 註：這四個彩色方塊保持亮色，若要在深色模式微調可在下方處理 */
+
 .yellow-box { background: #ffe066; color: #7a5a00; }
 .pink-box   { background: #ffd6e0; color: #a03a5e; }
 .blue-box   { background: #cce5ff; color: #004085; }
@@ -357,7 +363,7 @@ select {
     background: #e74c3c;
 }
 
-/* ===================== 8. 資訊區與表格 (Table) ===================== */
+/* ===================== 表格 ============================ */
 nav.info {
     border: 1px solid var(--border-color);
     padding: 15px;
@@ -393,16 +399,16 @@ th, td {
 }
 
 th {
-    background-color: var(--table-th); /* 🌟 修正：改用變數 */
+    background-color: var(--table-th);
     font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: var(--table-even); /* 🌟 修正：改用變數 */
+    background-color: var(--table-even); 
 }
 
 tr:hover {
-    background-color: var(--table-hover); /* 🌟 修正：改用變數 */
+    background-color: var(--table-hover); 
 }
 
 .page-header {
@@ -416,7 +422,7 @@ tr:hover {
 .status-approved { color: green; }
 .return-link     { margin-top: 20px; }
 
-/* ===================== 9. 純 CSS 視圖切換 ===================== */
+/* ===================== 視圖切換 ========================== */
 .hidden-checkbox {
     display: none;
 }
@@ -447,7 +453,7 @@ tr:hover {
 #view-toggle:checked ~ .page-header .toggle-btn .text-card  { display: none; }
 #view-toggle:checked ~ .page-header .toggle-btn .text-table { display: inline; }
 
-/* ======================== 10. 資料匯入頁面 (Set) =========================*/  
+/* ======================== 資料匯入頁面 Set=========================*/  
 .set {
     display: block;
     width: 100%;
