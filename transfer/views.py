@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import TransferRequest, Club, UserProfile
 from django.contrib.auth.models import User
+import csv
+from io import TextIOWrapper
 
 
 def detail(request):
@@ -173,4 +175,37 @@ def setting(request):
                 except Club.DoesNotExist:
                         context['error'] = "建立失敗：所選擇的社團不存在，請重新整理頁面再試。"
 
+    if 'upload_csv' in request.POST:
+        csv_file = request.FILES.get('csv_file')
+    if not csv_file:
+        context['error'] = "請選擇要上傳的 CSV 檔案！"
+    elif not csv_file.name.endswith('.csv'):
+        context['error'] = "檔案格式錯誤，請上傳 .csv 檔案！"
+    else:
+        # 讀取上傳的檔案，指定 utf-8-sig 預防亂碼
+        csv_data = TextIOWrapper(csv_file.file, encoding='utf-8-sig')
+        reader = csv.DictReader(csv_data)
+        
+        success_count = 0
+        for row in reader:
+            s_username = row['username']
+            s_password = row['password']
+            s_club_name = row['club_name']
+            
+            # 檢查帳號是否已存在、社團是否存在
+            if not User.objects.filter(username=s_username).exists():
+                try:
+                    club = Club.objects.get(name=s_club_name)
+                    # 建立 User
+                    new_user = User.objects.create_user(username=s_username, password=s_password)
+                    # 訊號會自動建 profile，我們手動補上社團
+                    profile = new_user.profile
+                    profile.club = club
+                    profile.save()
+                    success_count += 1
+                except Club.DoesNotExist:
+                    # 遇到資料庫沒有的社團就跳過，或記錄到錯誤清單中
+                    pass
+                    
+        context['success'] = f"成功透過 CSV 批次匯入了 {success_count} 筆學生資料！"
     return render(request, 'transfer/setting.html',context)
