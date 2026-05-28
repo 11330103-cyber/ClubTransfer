@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import TransferRequest, Club, UserProfile
+from django.contrib.auth.models import User
 
 
 def detail(request):
@@ -139,4 +140,37 @@ def pending_approvals(request):
     return render(request, 'transfer/approve.html', {'requests': requests})
 
 @login_required
-def setting(request):pass
+def setting(request):
+    if not (request.user.is_staff or request.user.is_superuser): #只有學務處和最高管理員能進入設定頁面
+        return HttpResponseForbidden("您沒有權限訪問設定頁面。")
+    clubs = Club.objects.all()
+    context = {'clubs': clubs} #用來存放成功或錯誤訊息，讓前端能夠顯示給使用者知道結果
+
+    if request.method == 'POST':
+        # 抓取前端表單傳來的使用者名稱
+        username = request.POST.get('username')
+        club_id = request.POST.get('club_id')
+        password = request.POST.get('password')
+
+        final_password = password if password else 'password123' #如果沒有輸入密碼，就給一個預設密碼
+
+        if username:
+            if not club_id:  
+                    # 情況 A：如果 club_id 是空的，直接報錯，不建帳號
+                    context['error'] = "建立失敗：請務必為該帳號選擇一個所屬社團！"
+            elif User.objects.filter(username=username).exists(): # 檢查是否已經有這個帳號
+                context['error'] = f"帳號「{username}」已經存在，請勿重複新增！"
+            else:
+                try:
+                    selected_club = Club.objects.get(id=club_id)
+                    new_user = User.objects.create_user(username=username, password=final_password)
+                    profile = new_user.profile
+                    profile.club = selected_club
+                    profile.save()
+                    
+                    context['success'] = f"成功建立帳號「{username}」，已分發至：【{selected_club.name}】！"
+                
+                except Club.DoesNotExist:
+                        context['error'] = "建立失敗：所選擇的社團不存在，請重新整理頁面再試。"
+
+    return render(request, 'transfer/setting.html',context)
