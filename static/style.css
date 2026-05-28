@@ -109,9 +109,9 @@ label {
 
 .login{
     display: block; /* ===================== 登入頁面 ===================== */
-    width: 100%;
+    width: 90%;
     max-width: 400px;
-    margin: 80px auto; 
+    margin: 55px auto; 
     padding: 40px;
     border: 2px solid #0b5887;
     border-radius: 16px; 
@@ -184,7 +184,7 @@ li{
     border-color: #0b5887;
 }
 
-button :hover {
+button:hover {
     transform: scale(1.05);
     color: #ffffff;
 }
@@ -445,6 +445,7 @@ table {
   width: 100%; 
   border-collapse: collapse; 
   font-family: Arial, sans-serif;
+  margin: 20px auto;
 }
 
 th, td {
@@ -543,3 +544,76 @@ tr:hover {
 #view-toggle:checked ~ .page-header .toggle-btn .text-table {
     display: inline;
 }
+
+
+
+/* ========================匯入資料頁面=========================*/  
+
+
+.set input[type="text"],
+.set input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.set input[type="text"]:focus,
+.set input[type="password"]:focus { 
+    border-color: #0b5887;
+    box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
+}
+
+.set {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 30px 40px; 
+    padding: 40px;
+    border: 2px solid #0b5887;
+    border-radius: 16px; 
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(11, 88, 135, 0.08);
+    box-sizing: border-box;
+    text-align: left; 
+
+}
+
+.set-p{
+  margin-left: 40px;
+  margin-top: 50px;  
+  margin-bottom: 20px;
+  font-size:20px;
+  text-align: left;
+}
+
+/*隱藏醜東西*/
+#csv_file_input {
+    display: none;
+}
+
+.file-bot {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  color: #0b5887;
+  border: 2px dashed #0b5887; 
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.file-bot:hover {
+  background-color: #0b5887;
+  color: #ffffff;
+  border-style: solid; 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(11, 88, 135, 0.15);
+}
+
