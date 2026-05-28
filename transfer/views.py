@@ -40,7 +40,7 @@ def apply_transfer(request):
         except Club.DoesNotExist:
             return render(request, 'transfer/apply.html', {'error': '選擇的社團不存在。', 'clubs': clubs, 'current_club': current_club})
 
-        if TransferRequest.objects.filter(student=request.user, status__lt=4).exists():
+        if TransferRequest.objects.filter(student=request.user, status__lt=5).exists():
             return render(request, 'transfer/apply.html', {'error': '您已有正在審核中的轉社申請，請勿重複申請！', 'clubs': clubs, 'current_club': current_club})
 
         if new_club.is_full():
