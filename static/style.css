@@ -1,128 +1,150 @@
-body {
-  font-family: "Microsoft JhengHei", serif;
-  background-color: #ffffff;
-  color: #070323;
-  padding: 10px;
-  text-align: center;
+/* ===================== 1. 顏色變數核心控管區 ===================== */
+:root {
+    --bg-main: #ffffff;          /* 全局背景 */
+    --text-main: #070323;        /* 主要文字 */
+    --a-main: #0b5887;           /* 超連結顏色（改用主題藍比純黑更好看） */
+    --card-bg: #ffffff;          /* 卡片/選單背景 */
+    --border-color: #0b5887;     /* 主題邊框線 */
+    
+    /* 🎨 新增：表格與細節專用變數 */
+    --table-th: #f4f4f4;         /* 表格標頭 */
+    --table-even: #f9f9f9;       /* 表格雙數列 */
+    --table-hover: #e7eaf9;      /* 表格滑鼠懸停 */
+    --input-border: #e1e8ed;     /* 輸入框外框 */
+    --error-color: #a01a1a;      /* 錯誤訊息顏色 */
+    --step-line: #cccccc;        /* 進度條未達到的連接線 */
 }
+
+body.dark-mode {
+    --bg-main: #121212;          /* 暗黑全局背景 */
+    --text-main: #f5f7fa;        /* 暗黑主要文字 */
+    --a-main: #3a9ad9;           /* 🌟 修正：暗黑超連結（亮藍色才看得到！） */
+    --card-bg: #1e1e1e;          /* 暗黑卡片背景 */
+    --border-color: #3a9ad9;     /* 暗黑主題邊框線 */
+    
+    /* 🎨 暗黑模式專用表格與細節 */
+    --table-th: #2d2d2d;         
+    --table-even: #1a1a1a;       
+    --table-hover: #2c3e50;      
+    --input-border: #444444;     
+    --error-color: #ff6b6b;      /* 亮紅色，暗黑模式才顯眼 */
+    --step-line: #444444;
+}
+
+/* ===================== 2. 全局基礎樣式 ===================== */
+body {
+    font-family: "Microsoft JhengHei", serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
 h1 {
-  color: #042c54;
+    color: var(--text-main);
 }
 
 h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 h2 {
-  font-size: 45px;
-  margin-bottom: 2px;
+    font-size: 45px;
+    margin-bottom: 2px;
 }
 
 .welcome-section {
-  margin-top: 50px;
-  margin-bottom: 5px;
-  padding: 5px;
-
+    margin-top: 50px;
+    margin-bottom: 5px;
+    padding: 5px;
 }
 
 .welcome-section p {
-  text-decoration: overline;
-  font-family: cursive;
-  margin-top: 1px;
+    text-decoration: overline;
+    font-family: cursive;
+    margin-top: 1px;
 }
 
 a {
-  color: #000000;
-  text-decoration: none;
-    }
+    color: var(--a-main);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
 a:hover {
-  text-decoration: none;
+    text-decoration: underline; /* 增加滑鼠移入時的底線提示 */
 }
 
 label {
-  display: #042c54;
-  margin-top: 9px;
-  font-weight: bold;
+    display: block; /* 🌟 修正：原本誤寫為 var(--a-main) */
+    color: var(--text-main); /* 補上顏色控制 */
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-/*.toolbar {
-    display: flex;              
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px double #0b5887;
-    border-right: 1px solid #ffffff;
-    border-bottom: 10px solid #0b5887;
-    border-left: 1px solid #ffffff;  
-    border-width: 10px;      
-    
-    background-color: #ffffffce;    
-    padding: 10px 20px;           
-    color: #190560;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; 
-    box-sizing: border-box;
+li {
+    list-style: none;
+    color: var(--error-color); /* 🌟 修正：改成變數控制，深色模式才不會看不見 */
+    margin: 3px auto;
+    font-size: 15px;
 }
-.toolbar a {
-    color: #10043e;
-    text-decoration: none;
-}*/
 
+/* ===================== 3. 導覽列 (Toolbar) ===================== */
 .toolbar {
-  /* ===================== Toolbar/導覽 ===================== */
-
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  
-  background-color: #ffffff;
-  padding: 10px 10px;           
-  border-bottom: 10px solid #0b5887; 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: var(--bg-main);
+    padding: 10px 10px;           
+    border-bottom: 10px solid var(--border-color); 
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .toolbar-logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #0b5887; 
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--border-color); 
 }
 
 .toolbar-menu {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
+
 .toolbar-item {
-  color: #555555;               
-  font-weight: 500;
-  font-size: 1rem;
-  
-  padding-bottom: 5px;          
-  border-bottom: 3px solid transparent; /* 預設有一條透明底線，防止滑鼠移入時畫面跳動 */
-  transition: all 0.2s ease-in-out;
+    color: var(--text-main);               
+    font-weight: 500;
+    font-size: 1rem;
+    padding-bottom: 5px;          
+    border-bottom: 3px solid transparent; 
+    transition: all 0.2s ease-in-out;
 }
 
 .toolbar-item:hover {
-  color: #0b5887;
-  border-bottom: 5px solid #0b5887;
+    color: var(--border-color);
+    border-bottom: 5px solid var(--border-color);
 }
 
-.login{
-    display: block; /* ===================== 登入頁面 ===================== */
+/* ===================== 4. 登入頁面 (Login) ===================== */
+.login {
+    display: block; 
     width: 90%;
     max-width: 400px;
     margin: 55px auto; 
     padding: 40px;
-    border: 2px solid #0b5887;
+    border: 2px solid var(--border-color);
     border-radius: 16px; 
-    background-color: #ffffff;
-    box-shadow: 0 10px 25px rgba(11, 88, 135, 0.08);
+    background-color: var(--bg-main);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     text-align: left; 
+    transition: all 0.4s ease;
 }
 
 .login h2 {
-    color: #042c54;
+    color: var(--text-main);
     text-align: left;
     margin-top: 0;
     margin-bottom: 24px;
@@ -136,24 +158,18 @@ label {
 .login label {
     display: block;
     margin-bottom: 8px;
-    color: #042c54;
+    color: var(--text-main);
     font-weight: bold;
     font-size: 0.9rem;
 }
-
-li{
-    list-style: none;
-    color: #540404;
-    margin: 3px auto;
-    font-size: 15px;
-}
-
 
 .login input[type="text"],
 .login input[type="password"] {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e1e8ed;
+    border: 2px solid var(--input-border); /* 🌟 改用變數 */
+    background-color: var(--bg-main);      /* 🌟 補上背景色，防止深色模式穿透 */
+    color: var(--text-main);               /* 🌟 補上打字顏色 */
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -163,75 +179,69 @@ li{
 
 .login input[type="text"]:focus,
 .login input[type="password"]:focus {
-    border-color: #0b5887;
+    border-color: var(--border-color);
     box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
 }
 
-.bot{
-    background-color: #ffffff;
-    border: 2px solid #0b5887;
+/* ===================== 5. 通用按鈕與卡片功能區 ===================== */
+.bot {
+    background-color: var(--bg-main);
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
     border-radius: 8px;
     padding: 5px 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: transform 0.15s;
+    transition: transform 0.15s, background-color 0.2s, color 0.2s;
+    cursor: pointer;
 /* ===================== 卡片/進度條/功能區 ====================================== */
-/*救命我要把者理弄粗一點不然我根本找不到阿阿阿阿阿阿==================================*/
+/* 救命我要把這裡弄粗一點不然我根本找不到阿阿阿阿阿阿 ================================== */
 }
+
 .bot:not(:disabled):hover {
     transform: scale(1.05);
-    background-color: #0b5887;
-    color: #ffffff;
-    border-color: #0b5887;
+    background-color: var(--border-color);
+    color: var(--bg-main); /* 頂替白天深色的白字 */
+    border-color: var(--border-color);
 }
 
 button:hover {
     transform: scale(1.05);
-    color: #ffffff;
 }
 
 .applies {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  justify-content: center;
-  align-items: stretch;
-  padding: 10px 0;
-
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: stretch;
+    padding: 10px 0;
 }
 
-section.apply-card {
-  background-color: #ffffff;
-  border: 2px solid #150b60;
-  border-radius: 8px;
-  padding: 15px;
-  width: 300px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 .apply-card {
-  background: #ffffff;
-  border: 2px solid #150b60;
-  border-radius: 8px;
-  padding: 15px;
-  width: 100%;
-  max-width: 500px; 
-  box-sizing: border-box;
-  box-shadow: 0 4px 6px rgba(175, 186, 209, 0.539);
-  margin: 30px auto;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 15px;
+    width: 100%;
+    max-width: 500px; 
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 30px auto;
+    text-align: left;
+    transition: all 0.4s ease; 
 }
 
 .progress-list .apply-card {
-  margin-bottom: 0;
-  flex: 320px;
-  max-width: 340px;
-  min-width: 260px;
+    margin-bottom: 0;
+    flex: 320px;
+    max-width: 340px;
+    min-width: 260px;
 }
 
-.menu-box{
-
-  /*base===============================================================================*/
-  /*base===============================================================================*/
+/* ===================== 6. 彩色選單方塊 (Menu Box) ===================== */
+.menu-box {
     display: block;
-    gap: 20px;
     margin: 10px auto;
     padding: 60px 10px;
     width: 300px;
@@ -244,186 +254,93 @@ section.apply-card {
 }
 
 .menu-box:hover {
-  transform: scale(1.03);
+    transform: scale(1.03);
 }
 
-.yellow-box {
-  background: #ffe066;
-  color: #7a5a00;
-}
-
-.pink-box {
-  background: #ffd6e0;
-  color: #a03a5e;
-}
-.blue-box {
-  background: #cce5ff;
-  color: #004085;
-}
-
-.gray-box{
-  background: #95bbf5;
-  color: #32366d;
-}
+/* 註：這四個彩色方塊保持亮色，若要在深色模式微調可在下方處理 */
+.yellow-box { background: #ffe066; color: #7a5a00; }
+.pink-box   { background: #ffd6e0; color: #a03a5e; }
+.blue-box   { background: #cce5ff; color: #004085; }
+.gray-box   { background: #95bbf5; color: #32366d; }
 
 select {
     padding: 5px;
-    border: 1px solid #eae3fc;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
-    background-color: #fff;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     font-size: 1rem;
 }
 
+/* ===================== 7. 進度條區塊 (Stepper) ===================== */
 .progress-list {
-  /*progress===============================================================================*/
-  /*progress===============================================================================*/
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-  margin-bottom: 24px;
-  padding: 0 32px;
-  background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 0 32px;
+    background-color: var(--card-bg);
+    transition: background-color 0.4s ease;
 }
-
-
-
-/*.progress-bar {
-  width: 100%;
-  background: #eee;
-  border-radius: 8px;
-  height: 16px;
-  overflow: hidden;
-}
-.progress-bar-inner {
-  height: 100%;
-  background: #0b5887;
-  transition: width 0.3s;
-}*/
 
 .label {
     display: block;
     margin-top: 8px;
     font-size: 14px;
-}
-.stepper {
-  /*進度條===============================================================================*/
-  /*進度條===============================================================================*/
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 4px;
-  margin: 24px 0 12px 0;
-  position: relative;
-}
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  min-width: 32px;
-}
-.step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 4px;
-  background: #ccc;
-  z-index: 0;
-  transform: translateY(-50%);
-}
-.step.active:not(:last-child)::after {
-  background: #0b5887;
-}
-.circle {
-  width: 48px;
-  height: 32px;
-  border-radius: 50%;
-  background: #b88a8a;
-  color: #ea5252;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  z-index: 1;
-  margin-bottom: 4px;
-  transition: background 0.2s;
-}
-
-.step.active .circle {
-  background: #0b5887;
+    color: var(--text-main);
 }
 
 .stepper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 24px 0 12px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0 12px 0;
+    width: 100%;
 }
 
 .step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 2;
 }
 
-.step:not(:last-child)::after {/*連接線*/
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  width: 50%;
-  height: 4px;
-  background: #ccc;
-  transform: translateX(50%);
+.step:not(:last-child)::after { /* 連接線 */
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    width: 100%;
+    height: 4px;
+    background: var(--step-line);
+    z-index: 0;
 }
 
 .step.active:not(:last-child)::after {
-  background: #0b5887;
+    background: var(--border-color);
 }
 
 .circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #ccc;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  z-index: 1;
-  margin-bottom: 4px;
-  transition: background 0.2s;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--step-line);
+    color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 1;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
 }
 
 .step.active .circle {
-  background: #0b5887;
-}
-
-
-nav.info {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  
-}
-
-.info-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-  margin-bottom: 24px;
-  padding: 0 32px;
-  background-color: #ffffff;
+    background: var(--border-color);
+    color: #ffffff;
 }
 
 /* 進度條拒絕狀態 */
@@ -437,39 +354,57 @@ nav.info {
     font-weight: bold;
 }
 .step.rejected:not(:last-child)::after {
-  background: #e74c3c;
+    background: #e74c3c;
 }
 
-/* ===================== 表格樣式 ===================== */
+/* ===================== 8. 資訊區與表格 (Table) ===================== */
+nav.info {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+}
+
+.info-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 0 32px;
+    background-color: var(--card-bg);
+}
+
 table {
-  width: 100%; 
-  border-collapse: collapse; 
-  font-family: Arial, sans-serif;
-  margin: 20px auto;
+    width: 100%; 
+    border-collapse: collapse; 
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    transition: all 0.4s ease;
 }
 
 th, td {
-  border: 1px solid #ddd; 
-  padding: 12px; 
-  text-align: left; 
+    border: 1px solid var(--input-border); 
+    padding: 12px; 
+    text-align: left; 
 }
 
 th {
-  background-color: #f4f4f4; 
-  font-weight: bold;
+    background-color: var(--table-th); /* 🌟 修正：改用變數 */
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9; 
+    background-color: var(--table-even); /* 🌟 修正：改用變數 */
 }
 
 tr:hover {
-  background-color: #d2dce2;
+    background-color: var(--table-hover); /* 🌟 修正：改用變數 */
 }
 
-
-
-/* ===================== progress排版與文字顏色 ===================== */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -477,84 +412,64 @@ tr:hover {
     margin-bottom: 20px;
 }
 
-.status-rejected {
-    color: rgb(255, 98, 0);
-}
+.status-rejected { color: rgb(255, 98, 0); }
+.status-approved { color: green; }
+.return-link     { margin-top: 20px; }
 
-.status-approved {
-    color: green;
-}
-
-.return-link {
-    margin-top: 20px;
-}
-
-
+/* ===================== 9. 純 CSS 視圖切換 ===================== */
 .hidden-checkbox {
     display: none;
 }
 
-/* 切換按鈕的外觀 */
 .toggle-btn {
     padding: 8px 16px;
     cursor: pointer;
     border-radius: 8px;
-    border: 2px solid #0b5887;
-    background-color: #fff;
-    color: #0b5887;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     font-weight: bold;
     transition: all 0.2s;
 }
 
 .toggle-btn:hover {
-    background-color: #0b5887;
-    color: #ffffff;
+    background-color: var(--border-color);
+    color: var(--bg-main);
 }
 
-/*預設*/
-.view-card {
-    display: flex;
-}
+.view-card  { display: flex; }
+.view-table { display: none; }
+.toggle-btn .text-card  { display: inline; }
+.toggle-btn .text-table { display: none; }
 
-.view-table {
-    display: none;
-}
+#view-toggle:checked ~ .content-wrapper .view-card  { display: none; }
+#view-toggle:checked ~ .content-wrapper .view-table { display: block; }
+#view-toggle:checked ~ .page-header .toggle-btn .text-card  { display: none; }
+#view-toggle:checked ~ .page-header .toggle-btn .text-table { display: inline; }
 
-/*按鈕文字 */
-.toggle-btn .text-card { 
-    display: inline; 
-}
-.toggle-btn .text-table { 
-    display: none; 
-}
-
-/* 把切換用checkbox解決 */
-#view-toggle:checked ~ .content-wrapper .view-card {
-    display: none;
-}
-
-#view-toggle:checked ~ .content-wrapper .view-table {
+/* ======================== 10. 資料匯入頁面 (Set) =========================*/  
+.set {
     display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 30px 40px; 
+    padding: 40px;
+    border: 2px solid var(--border-color);
+    border-radius: 16px; 
+    background-color: var(--bg-main);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    text-align: left; 
+    transition: all 0.4s ease;
 }
-
-#view-toggle:checked ~ .page-header .toggle-btn .text-card {
-    display: none;
-}
-
-#view-toggle:checked ~ .page-header .toggle-btn .text-table {
-    display: inline;
-}
-
-
-
-/* ========================匯入資料頁面=========================*/  
-
 
 .set input[type="text"],
 .set input[type="password"] {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e1e8ed;
+    border: 2px solid var(--input-border);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -564,56 +479,45 @@ tr:hover {
 
 .set input[type="text"]:focus,
 .set input[type="password"]:focus { 
-    border-color: #0b5887;
+    border-color: var(--border-color);
     box-shadow: 0 0 0 4px rgba(11, 88, 135, 0.15);
 }
 
-.set {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    margin: 30px 40px; 
-    padding: 40px;
-    border: 2px solid #0b5887;
-    border-radius: 16px; 
-    background-color: #ffffff;
-    box-shadow: 0 10px 25px rgba(11, 88, 135, 0.08);
-    box-sizing: border-box;
-    text-align: left; 
-
-}
-
-.set-p{
-  margin-left: 40px;
-  margin-top: 50px;  
-  margin-bottom: 20px;
-  font-size:20px;
-  text-align: left;
-}
-
-/*隱藏醜東西*/
-#csv_file_input {
-    display: none;
+.set-p {
+    margin-left: 40px;
+    margin-top: 50px;  
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: left;
+    color: var(--text-main);
 }
 
 .file-bot {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #ffffff;
-  color: #0b5887;
-  border: 2px dashed #0b5887; 
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer; 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: all 0.2s ease-in-out;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--bg-main);
+    color: var(--border-color);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: all 0.2s ease-in-out;
 }
 
 .file-bot:hover {
-  background-color: #0b5887;
-  color: #ffffff;
-  border-style: solid; 
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 12px rgba(11, 88, 135, 0.15);
+    background-color: var(--border-color);
+    color: var(--bg-main);
+    border-style: solid; 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(11, 88, 135, 0.15);
 }
 
+/*.file-hidden {
+    display: none;
+}*/
+
+#csv_file_input,
+.set input[type="file"] {
+    display: none !important;
+}
