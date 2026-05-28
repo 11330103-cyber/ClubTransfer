@@ -5,18 +5,18 @@
 {% block main %}
 
 <body>
-    <a>添加工作人員、學生</a>
+    <p class="set-p">添加學生</p>
     {% if success %}
         <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-            ✅ {{ success }}
+             {{ success }}
         </div>
     {% endif %}
     {% if error %}
         <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-            ❌ {{ error }}
+             {{ error }}
         </div>
     {% endif %}
-    <form method="POST" style="margin-bottom: 30px;">
+    <form method="POST" style="margin-bottom: 30px;" class="set">
         {% csrf_token %}
         <input type="text" name="username" placeholder="輸入使用者名稱" required>
         <input type="text" name="password" placeholder="輸入密碼" required>
@@ -26,14 +26,15 @@
                     <option value="{{ club.id }}">{{ club.name }}</option>
                 {% endfor %}
         </select>
-        <button type="submit">添加</button>
+        <button class='bot' type="submit">添加</button>
     </form>
 
-    <p>匯入大量學生資料:</p>
-    <form method="post" enctype="multipart/form-data">
+    <p class="set-p">匯入大量學生資料:</p>
+    <form class='set' method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="csv_file" accept=".csv" style="margin-bottom: 10px; display: block;">
-        <button type="submit" name="upload_csv" class="bot" style="padding: 8px 15px; background-color: #008CBA; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        <input type="file" name="csv_file" accept=".csv" id="csv_file_input">
+        <label for="csv_file_input"  class="file-bot">選擇 CSV 檔案</label>
+        <button type="submit" name="upload_csv" class="bot" >
             匯入 CSV
         </button>
     </form>
