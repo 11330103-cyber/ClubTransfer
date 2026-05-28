@@ -29,7 +29,7 @@
         <button class='bot' type="submit">添加</button>
     </form>
 
-    <p class="set-p">匯入大量學生資料:</p>
+    <p class="set-p">匯入大量學生資料: 順序(學生名稱,密碼,社團名稱)</p>
     <form class='set' method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="csv_file" accept=".csv" id="csv_file_input">
