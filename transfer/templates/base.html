@@ -11,9 +11,10 @@
     <nav class="toolbar">
         <div class="toolbar-logo" href="{% url 'index' %}">
             <h3><strong>大直高中轉社系統🥴</strong></h3>
+            <p style="font-size: 10px;">由李芸萱、柯景允設計</p>
         </div>
         <div class="toolbar-menu">
-            <button id="theme-toggle" class="bot toolbar-item">切換模式</button>
+            <button id="theme-toggle" class="bot toolbar-item">切換顏色模式</button>
             <a class="toolbar-item" href="{% url 'index' %}"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Menu Icon" style="width:24px; height:24px;">首頁</a>
             <a class="toolbar-item" href="{% url 'club_detail' %}">社團詳細資訊</a>
             {% if not user.is_authenticated %}
